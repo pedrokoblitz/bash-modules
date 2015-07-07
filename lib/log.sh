@@ -32,8 +32,6 @@ log() {
 	#     ^^^^^^^  command substitution
 }
 
-
-
 case $LOG_LEVEL in
  1) exec 3>&2         4> /dev/null 5> /dev/null;;
  2) exec 3>&2         4>&2         5> /dev/null;;
@@ -66,6 +64,4 @@ echo "Done"                                # command2
 echo "sending mail" >&${FD_LOGEVENTS}
 # Writes "sending mail" to file descriptor #7.
 
-
 exit 0
-

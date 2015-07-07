@@ -9,9 +9,7 @@ conf() {
     	source $BASE
     fi
 }
-
 conf
-
 
 #
 #
@@ -55,18 +53,18 @@ reload() {
 main() {
 
 	if [[ $1 -eq 'start']]; then
-
+		start
 	fi	
 
 	if [[ $1 -eq 'restart']]; then
-
+		restart
 	fi	
 
 	if [[ $1 -eq 'stop']]; then
-
-	fi	
+		stop
+	fi
 
 	if [[ $1 -eq 'reload']]; then
-
+		reload
 	fi	
 }
