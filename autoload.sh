@@ -18,7 +18,7 @@ _() {
 
 	if [[ -z $MODULE_PATH ]]; then
 		
-		exit("Var MODULE_PATH is not set.")
+		exit("Global variable MODULE_PATH is not set.")
 
 	fi
 

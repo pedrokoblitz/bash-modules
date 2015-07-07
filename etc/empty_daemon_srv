@@ -1,11 +1,11 @@
 #!/bin/bash
 
+#
+#
+#
 conf() {
-	
     local BASE='./conf/tresr.conf'
-
     if [[ -f $BASE ]]; then
-
     	source $BASE
     fi
 }
@@ -13,24 +13,37 @@ conf() {
 conf
 
 
+#
+#
+#
 register() {
-
 	update-rc.d $PROG_NAME defaults
 }
 
+#
+#
+#
 remove() {
-
 	update-rc.d -f $PROG_NAME remove
 }
 
+#
+#
+#
 start() {
 	
 }
 
+#
+#
+#
 restart() {
 	
 }
 
+#
+#
+#
 stop() {
 	
 }

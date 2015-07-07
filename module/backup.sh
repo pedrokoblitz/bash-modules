@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_backup() {
+module_backup() {
 
     # applib
     # backup

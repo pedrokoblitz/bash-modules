@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_cron() {
+module_cron() {
 
     # applib
     # cron
@@ -17,7 +17,6 @@ _cron() {
     readonly DEFAULT_APP_PATH="/usr/local/bin"
 
     cron.add_job() {
-
         local NEW_CRON=$1
         local JOB=$2
         local APP=$3
@@ -25,12 +24,10 @@ _cron() {
         crontab -l > mycron
         echo $JOB" "$DEFAUlT_APP_PATH"/"$APP >> mycron
         crontab mycron
-
         fs.rm mycron
     }
 
     cron.remove_job() {
-
         local NEW_CRON=$1
         local JOB=$2
         local APP=$3

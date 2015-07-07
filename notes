@@ -1,3 +1,8 @@
+is function?
+if [ -n "$(type -t rvm)" ] && [ "$(type -t rvm)" = function ]; then echo rvm is a function; else echo rvm is NOT a function; fi
+rvm is a function
+
+
 set -o nounset # exit if any var is not set
 set -e # exit if any line returns not true
 
