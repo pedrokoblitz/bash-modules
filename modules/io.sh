@@ -47,7 +47,7 @@ module_io() {
     #
     io.open() {
         local NAME=$1
-        local SAVED_FILE=$APP_DIR$DIR"/"$NAME"."$APP_EXTENSION
+        local SAVED_FILE=$APP_DIR$DIR/$NAME.$APP_EXTENSION
         local OUTPUT=$3
         fs.cat $SAVED_FILE > $OUTPUT
     }
@@ -57,7 +57,7 @@ module_io() {
     #
     io.save() {
         local NAME=$1
-        local SAVED_FILE=$APP_DIR$DIR"/"$NAME"."$APP_EXTENSION
+        local SAVED_FILE=$APP_DIR$DIR/$NAME.$APP_EXTENSION
         io.output_escape > $SAVED_FILE
     }
 
@@ -89,7 +89,7 @@ module_io() {
     #
     #
     io.remove_temp_files() {
-        fs.rm $APP_DIR"/tmp/*"
+        fs.rm $APP_DIR/tmp/*
     }
 
     # Close input file descriptor n. --> n<&-
@@ -138,7 +138,7 @@ module_io() {
     #
     #
     #
-    io.stout_save() {
+    io.stdout_save() {
       local N=$1
       exec $N>&1
     }

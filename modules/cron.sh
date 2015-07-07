@@ -14,7 +14,7 @@ module_cron() {
     # @midnight (same as @daily)
     # @hourly Run once an hour, "0 * * * *".
 
-    readonly DEFAULT_APP_PATH="/usr/local/bin"
+    readonly DEFAULT_APP_PATH=/usr/local/bin
 
     cron.add_job() {
         local NEW_CRON=$1

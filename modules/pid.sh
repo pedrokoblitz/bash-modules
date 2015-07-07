@@ -5,7 +5,7 @@ module_pid() {
     # default sleep time
     readonly PID_DEFAULT_DELAY=5
     # PID store
-    readonly PID_STORE=$HOME"/.bash_ ipc/"$APP"_"$BASHPID".pid"
+    readonly PID_STORE=$HOME/.bash_ipc/${APP_$BASHPID}.pid
 
     #
     #
@@ -17,7 +17,7 @@ module_pid() {
     #
     #
     #
-    pid.get_self() {
+    pid.self() {
         echo $$
     }
 
@@ -48,7 +48,7 @@ module_pid() {
     #
     #
     pid.kill_self() {
-        pid.kill_proc $(pid.get_self)
+        pid.kill_proc $(pid.self)
     }
 
     #

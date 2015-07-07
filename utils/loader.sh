@@ -10,14 +10,13 @@
 # source ./module/fs.sh
 # source ./module/fd.sh
 
-readonly MODULE_PATH="./module"
+readonly MODULE_PATH="./modules"
 
 #
 #
 #
 include_modules() {
 	local MODULES=$@
-
 	if [[ -z $MODULE_PATH ]]; then
 		exit("Global variable MODULE_PATH is not set.")
 	fi

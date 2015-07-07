@@ -12,7 +12,7 @@ module_queue() {
     #
     #
     #
-    queue.add() {
+    queue.add_first() {
         local QUEUE=$1
         local MESSAGE=$2
         fs.prepend_line_to_file $QUEUE $MESSAGE

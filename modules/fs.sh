@@ -92,7 +92,7 @@ module_fs() {
     }
 
     # -d file     Check if file is a directory.
-    fs.is_directoryectory() {
+    fs.is_directory() {
         local FILE=$1
         [[ -d $FILE ]]
     }
@@ -140,7 +140,7 @@ module_fs() {
     }
 
     fs.create_temp_file() {
-        mktemp $APP_DIR"/"$APP".XXXXXXXXXX.tmp" || { echo "Failed to create temp file"; exit 1; }
+        mktemp $APP_DIR/$APP.XXXXXXXXXX.tmp || { echo "Failed to create temp file"; exit 1; }
     }
 
     # fs 
@@ -238,10 +238,10 @@ module_fs() {
         local FILE=$1
         local STRING=$2
         local REPLACEMENT=$3
-        cat $1 | sed s/$2/$3/ > $1
+        cat $FILE | sed s/$STRING/$REPLACEMENT/ > $FILE
     }
 
-    fs.replace_in_single_file() {
+    fs.replace_in_same_file() {
         local ORIGINAL=$1
         local STRING=$3
         local REPLACEMENT=$4
@@ -275,7 +275,7 @@ module_fs() {
         fs.change_permission $PERMISSION $TARGET
     }
 
-    fs.web_readable_permission() {
+    fs.readable_permission() {
         local TARGET=$1
         local PERMISSION=755
         fs.change_permission $PERMISSION $TARGET
@@ -285,20 +285,10 @@ module_fs() {
         local TARGET=$3
         local USER=$1
         local GROUP=$2
-
-        if [[ -d $TARGET ]]; then
-            chmod -R $PERMISSION $TARGET
-        elif [[ -f $TARGET ]]; then
-            chmod $PERMISSION $TARGET
-        fi
         chown $USER:$GROUP $TARGET
     }
 
-    fs.web_permission() {
-        fs.change_permission 755 
-    }
-
-    fs.group_web_own() {
+    fs.group_apache_own() {
         fs.group_own www-data www-data /var/www/
     }
 }

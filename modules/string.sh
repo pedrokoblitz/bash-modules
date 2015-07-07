@@ -134,7 +134,7 @@ module_string() {
     #
     #
     string.date_str() {
-        local delimiter=${1:-$(default_date_delimiter)}
+        local delimiter=${1:-$(string.default_date_delimiter)}
         date +%Y${delimiter}%m${delimiter}%d
     }
 
@@ -142,7 +142,7 @@ module_string() {
     #
     #
     string.time_str() {
-        local delimiter=${1:-$(default_date_delimiter)}
+        local delimiter=${1:-$(string.default_date_delimiter)}
         date +%H${delimiter}%M
     }
 
@@ -150,7 +150,7 @@ module_string() {
     #
     #
     string.time_with_seconds_str() {
-        local delimiter=${1:-$(default_date_delimiter)}
+        local delimiter=${1:-$(string.default_date_delimiter)}
         date +%H${delimiter}%M${delimiter}%S
     }
 
@@ -158,7 +158,7 @@ module_string() {
     #
     #
     string.date_time_str() {
-        local delimiter=${1:-$(default_date_delimiter)}
+        local delimiter=${1:-$(string.default_date_delimiter)}
         local hour_delimiter=${2:-"-"}
         echo $(date_str $delimiter)${hour_delimiter}$(time_str $delimiter)
     }
@@ -167,7 +167,7 @@ module_string() {
     #
     #
     string.date_time_with_seconds_str() {
-        local delimiter=${1:-$(default_date_delimiter)}
+        local delimiter=${1:-$(string.default_date_delimiter)}
         local hour_delimiter=${2:-"-"}
         echo $(date_str $delimiter)${hour_delimiter}$(time_with_seconds_str $delimiter)
     }

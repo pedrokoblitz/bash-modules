@@ -5,21 +5,20 @@ module_mysql() {
     # db
     # create tables, dump, restore
 
-    mysql.exec_in_server() {
-        local $DB_NAME=$1
-        local $QUERY=$2
+    mysql.exec_query() {
+        local $QUERY=$1
 
         mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST -e $QUERY
     }
 
-    mysql.exec_in_database() {
+    mysql.exec_query_in_database() {
         local $DB_NAME=$1
         local $QUERY=$2
 
         mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST $DB_NAME -e $QUERY
     }
 
-    mysql.exec_in_table() {
+    mysql.exec_query_in_table() {
         local $DB_NAME=$1
         local TABLE=$2
         local $QUERY=$3
@@ -49,7 +48,7 @@ module_mysql() {
         mysql.exec_in_server $QUERY
     }
 
-    mysql.create_remove_database() {
+    mysql.remove_database() {
         local DB_NAME=$1
         local QUERY="DROP DATABASE $DB_NAME;"   
         
@@ -64,7 +63,7 @@ module_mysql() {
         local DB_NAME=$1
         local DATESTRING=$(dt_date_str)
 
-        mysqldump --force --opt --user=$DB_USER --password=$DB_PASSWORD --databases $DB_NAME > $DB_OUTPUT_DIR"/""."$DB_NAME".sql"
+        mysqldump --force --opt --user=$DB_USER --password=$DB_PASSWORD --databases $DB_NAME > ${DB_OUTPUT_DIR}/.${DB_NAME}.sql
         gzip $DB_OUTPUT_DIR"/""."$DB_NAME".sql"
         fs.cp $DB_OUTPUT_DIR"/""."$DB_NAME"."$DATESTRING"sql"
     }
@@ -73,7 +72,7 @@ module_mysql() {
         local DATABASES=$(mysql --user=$DB_USER --password=$DB_PASSWORD -e "SHOW DATABASES;" | tr -d "| " | grep -v Database)
          
         for DB_NAME in $DATABASES; do
-            if [[ "$db" != "information_schema" ]] && [[ "$DB_NAME" != _* ]] ; then
+            if [[ "$DB_NAME" != "information_schema" ]] && [[ "$DB_NAME" != _* ]] ; then
                 mysql.dump_database $DB_USER $DB_PASSWORD $DB_NAME
             fi
         done
@@ -82,7 +81,7 @@ module_mysql() {
     mysql.restore_database() {
         local DB_NAME=$1
 
-        gunzip < $DB_OUTPUT_DIR"/"$DB_NAME".sql" | mysql -u$DB_USER -p$DB_PASSWORD $DB_NAME
+        gunzip < ${DB_OUTPUT_DIR}/${DB_NAME}.sql | mysql -u$DB_USER -p$DB_PASSWORD $DB_NAME
     }
 
     # mysql script http://www.mysqltutorial.org/import-csv-file-mysql-table/
