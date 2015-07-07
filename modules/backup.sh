@@ -24,8 +24,4 @@ module_backup() {
     backup.images() {
         :
     }
-
-    backup.vms() {
-        :
-    }
 }

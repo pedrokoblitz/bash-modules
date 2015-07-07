@@ -1,3 +1,65 @@
+
+# fifo to subshell 
+PIPE="/tmp/pipe.$$"
+mkfifo $PIPE
+
+(
+echo 'value' > $PIPE &
+)
+
+VARIABLE=`cat $PIPE`
+echo $VARIABLE
+rm $PIPE
+
+# fifo to subshell 2
+#!/bin/bash
+
+TMPFIFO="/tmp/fifo.$$"
+ 
+mknod $TMPFIFO p
+ 
+(
+       echo 'value' > $TMPFIFO &
+)
+
+# fifo to subshell 3
+FIFO="/tmp/fifo.$$"
+if ! [ -p "$FIFO" ]; then
+  mkfifo "$FIFO"
+fi
+{ exec >"$FIFO"; sleep 2; ps -f ;echo "hello from $FIFO" ;} &
+var=$(< "$FIFO")
+rm "$FIFO"
+echo "$var"
+ 
+VARIABLE=`cat $TMPFIFO`
+rm $TMPFIFO
+
+# temp to subshell 
+TMPF="/tmp/tmpf.$$"
+mktemp $TMPF >/dev/null
+
+(echo 'value' > $TMPF)
+
+VARIABLE=`cat $TMPF`
+echo $VARIABLE
+rm $TMPF
+
+
+
+#proc to var
+coproc TEST { sleep 2; ps -f ;echo "hello from coproc" ;}
+var=$(cat <&${TEST[0]})
+echo "$var"
+
+#
+
+
+
+
+
+
+
 # bash pipe script 1
 declare PIPE=/tmp/testPIPE
 

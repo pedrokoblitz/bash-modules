@@ -28,11 +28,15 @@ The following global variabels should be set:
 
 #### Functions
 
-module_<name>.<function>
+async.run_on_background
 
 ##### Usage
 
-module_<name>.<function>
+async.spawn_via_loop
+
+##### Usage
+
+async.spawn_via_parallel
 
 ##### Usage
 
@@ -50,11 +54,11 @@ The following global variabels should be set:
 
 #### Functions
 
-module_<name>.<function>
+backup.files
 
 ##### Usage
 
-module_<name>.<function>
+backup.dirs
 
 ##### Usage
 
@@ -72,11 +76,11 @@ The following global variabels should be set:
 
 #### Functions
 
-module_<name>.<function>
+cron.add_job
 
 ##### Usage
 
-module_<name>.<function>
+cron.remove_job
 
 ##### Usage
 
@@ -94,11 +98,203 @@ The following global variabels should be set:
 
 #### Functions
 
-module_<name>.<function>
+fs.<function>
 
 ##### Usage
 
-module_<name>.<function>
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
+
+##### Usage
+
+fs.<function>
 
 ##### Usage
 
@@ -116,11 +312,35 @@ The following global variabels should be set:
 
 #### Functions
 
-module_<name>.<function>
+http.download
 
 ##### Usage
 
-module_<name>.<function>
+http.echo
+
+##### Usage
+
+http.get
+
+##### Usage
+
+http.post
+
+##### Usage
+
+http.rest_get
+
+##### Usage
+
+http.rest_post
+
+##### Usage
+
+http.rest_put
+
+##### Usage
+
+http.rest_delete
 
 ##### Usage
 
@@ -138,11 +358,95 @@ The following global variabels should be set:
 
 #### Functions
 
-module_<name>.<function>
+io.<function>
 
 ##### Usage
 
-module_<name>.<function>
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
+
+##### Usage
+
+io.<function>
 
 ##### Usage
 
@@ -160,11 +464,51 @@ The following global variabels should be set:
 
 #### Functions
 
-module_<name>.<function>
+mysql.<function>
 
 ##### Usage
 
-module_<name>.<function>
+mysql.<function>
+
+##### Usage
+
+mysql.<function>
+
+##### Usage
+
+mysql.<function>
+
+##### Usage
+
+mysql.<function>
+
+##### Usage
+
+mysql.<function>
+
+##### Usage
+
+mysql.<function>
+
+##### Usage
+
+mysql.<function>
+
+##### Usage
+
+mysql.<function>
+
+##### Usage
+
+mysql.<function>
+
+##### Usage
+
+mysql.<function>
+
+##### Usage
+
+mysql.<function>
 
 ##### Usage
 
@@ -182,11 +526,51 @@ The following global variabels should be set:
 
 #### Functions
 
-module_<name>.<function>
+pid.<function>
 
 ##### Usage
 
-module_<name>.<function>
+pid.<function>
+
+##### Usage
+
+pid.<function>
+
+##### Usage
+
+pid.<function>
+
+##### Usage
+
+pid.<function>
+
+##### Usage
+
+pid.<function>
+
+##### Usage
+
+pid.<function>
+
+##### Usage
+
+pid.<function>
+
+##### Usage
+
+pid.<function>
+
+##### Usage
+
+pid.<function>
+
+##### Usage
+
+pid.<function>
+
+##### Usage
+
+pid.<function>
 
 ##### Usage
 
@@ -204,11 +588,39 @@ The following global variabels should be set:
 
 #### Functions
 
-module_<name>.<function>
+queue.<function>
 
 ##### Usage
 
-module_<name>.<function>
+queue.<function>
+
+##### Usage
+
+queue.<function>
+
+##### Usage
+
+queue.<function>
+
+##### Usage
+
+queue.<function>
+
+##### Usage
+
+queue.<function>
+
+##### Usage
+
+queue.<function>
+
+##### Usage
+
+queue.<function>
+
+##### Usage
+
+queue.<function>
 
 ##### Usage
 
@@ -226,11 +638,31 @@ The following global variabels should be set:
 
 #### Functions
 
-module_<name>.<function>
+sec.<function>
 
 ##### Usage
 
-module_<name>.<function>
+sec.<function>
+
+##### Usage
+
+sec.<function>
+
+##### Usage
+
+sec.<function>
+
+##### Usage
+
+sec.<function>
+
+##### Usage
+
+sec.<function>
+
+##### Usage
+
+sec.<function>
 
 ##### Usage
 
@@ -248,11 +680,15 @@ The following global variabels should be set:
 
 #### Functions
 
-module_<name>.<function>
+ssh.<function>
 
 ##### Usage
 
-module_<name>.<function>
+ssh.<function>
+
+##### Usage
+
+ssh.<function>
 
 ##### Usage
 
@@ -270,11 +706,79 @@ The following global variabels should be set:
 
 #### Functions
 
-module_<name>.<function>
+string.<function>
 
 ##### Usage
 
-module_<name>.<function>
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
+
+##### Usage
+
+string.<function>
 
 ##### Usage
 
@@ -292,11 +796,19 @@ The following global variabels should be set:
 
 #### Functions
 
-module_<name>.<function>
+varcheck.<function>
 
 ##### Usage
 
-module_<name>.<function>
+varcheck.<function>
+
+##### Usage
+
+varcheck.<function>
+
+##### Usage
+
+varcheck.<function>
 
 ##### Usage
 

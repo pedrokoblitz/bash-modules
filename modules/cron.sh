@@ -22,7 +22,7 @@ module_cron() {
         local APP=$3
 
         crontab -l > mycron
-        echo $JOB" "$DEFAUlT_APP_PATH"/"$APP >> mycron
+        echo $JOB $DEFAUlT_APP_PATH/$APP >> mycron
         crontab mycron
         fs.rm mycron
     }
