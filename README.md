@@ -15,24 +15,24 @@ Every module should have an usage() function describing its usage and features.
 
 ## Modules
 
-##### [async](./async/README.md)
+##### [async](/tree/master/modules/tree/master/modules/async/README.md)
 
-##### [cron](./cron/README.md)
+##### [cron](/tree/master/modules/tree/master/modules/cron/README.md)
 
-##### [fs](./fs/README.md)
+##### [fs](/tree/master/modules/tree/master/modules/fs/README.md)
 
-##### [http](./http/README.md)
+##### [http](/tree/master/modules/tree/master/modules/http/README.md)
 
-##### [io](./io/README.md)
+##### [io](/tree/master/modules/tree/master/modules/io/README.md)
 
-##### [mysql](./mysql/README.md)
+##### [mysql](/tree/master/modules/tree/master/modules/mysql/README.md)
 
-##### [pid](./pid/README.md)
+##### [pid](/tree/master/modules/tree/master/modules/pid/README.md)
 
-##### [queue](./queue/README.md)
+##### [queue](/tree/master/modules/tree/master/modules/queue/README.md)
 
-##### [sec](./sec/README.md)
+##### [sec](/tree/master/modules/tree/master/modules/sec/README.md)
 
-##### [string](./string/README.md)
+##### [string](/tree/master/modules/tree/master/modules/string/README.md)
 
-##### [varcheck](./varcheck/README.md)
+##### [varcheck](/tree/master/modules/tree/master/modules/varcheck/README.md)
