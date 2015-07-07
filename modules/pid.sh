@@ -5,7 +5,7 @@ module_pid() {
     # default sleep time
     readonly PID_DEFAULT_DELAY=5
     # PID store
-    readonly PID_STORE=$HOME/.bash_ipc/${APP_$BASHPID}.pid
+    readonly PID_STORE=$HOME/.bash_pid/${APP_$BASHPID}.pid
 
     #
     #

@@ -55,7 +55,7 @@ module_mysql() {
         mysql.exec_in_server $QUERY
     }
 
-    mysql.remove_tmp_files() {
+    mysql.remove_temp_files() {
         fs.rm $DB_OUTPUT_DIR/*gz > /dev/null 2>&1
     }
 

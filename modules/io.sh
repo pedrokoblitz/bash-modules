@@ -80,7 +80,7 @@ module_io() {
     #
     #
     #
-    io.remove_tmp_file() {
+    io.remove_temp_file() {
         local OUTPUT=$1
         fs.rm $OUTPUT
     }
