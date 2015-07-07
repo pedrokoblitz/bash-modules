@@ -1,4 +1,40 @@
-is function?
+# bash pipe script 1
+declare PIPE=/tmp/testPIPE
+
+trap "rm -f $PIPE" EXIT
+
+# create pipe file
+if [[ ! -p $PIPE ]]; then
+    mkfifo $PIPE
+fi
+
+while true
+do
+    if read line < $PIPE; then
+        if [[ "$line" == 'quit' ]]; then
+            break
+        fi
+        echo $line
+    fi
+done
+
+echo "Reader exiting"
+
+# bash pipe script 2
+declare PIPE=/tmp/testPIPE
+
+if [[ ! -p $PIPE ]]; then
+    echo "Reader not running"
+    exit 1
+fi
+
+if [[ "$1" ]]; then
+    echo "$1" > $PIPE
+else
+    echo "Hello from $$" > $PIPE
+fi
+
+#is function?
 if [ -n "$(type -t rvm)" ] && [ "$(type -t rvm)" = function ]; then echo rvm is a function; else echo rvm is NOT a function; fi
 rvm is a function
 

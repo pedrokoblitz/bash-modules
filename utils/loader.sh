@@ -4,7 +4,7 @@
 # MODULE_PATH="./module/"
 # 
 # command:
-# _ fs fd
+# include_modules fs fd
 #
 # will run commands:
 # source ./module/fs.sh
@@ -12,25 +12,23 @@
 
 readonly MODULE_PATH="./module"
 
-_() {
-	
+#
+#
+#
+include_modules() {
 	local MODULES=$@
 
 	if [[ -z $MODULE_PATH ]]; then
-		
 		exit("Global variable MODULE_PATH is not set.")
-
 	fi
 
 	for MODULE in $MODULES
 	do
 		if [[ type -t $MODULE ]]; then
-
-			local FILE=$MODULE_PATH"/"$MODULE".sh"
-
+			local FILE=$MODULE_PATH/$MODULE.sh
 			if [[ -f $FILE ]]; then
-
 				source $FILE
+				module_$MODULE
 			fi
 		fi
 	done
