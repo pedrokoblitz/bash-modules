@@ -26,6 +26,17 @@ The following global variabels should be set:
 * VAR1
 * VAR2
 
+#### Functions
+
+module_<name>.<function>
+
+##### Usage
+
+module_<name>.<function>
+
+##### Usage
+
+
 ### backup
 
 Backup files and folders.
@@ -36,6 +47,17 @@ The following global variabels should be set:
 
 * VAR1
 * VAR2
+
+#### Functions
+
+module_<name>.<function>
+
+##### Usage
+
+module_<name>.<function>
+
+##### Usage
+
 
 ### cron
 
@@ -48,6 +70,17 @@ The following global variabels should be set:
 * VAR1
 * VAR2
 
+#### Functions
+
+module_<name>.<function>
+
+##### Usage
+
+module_<name>.<function>
+
+##### Usage
+
+
 ### fs
 
 Filesystem common operations.
@@ -58,6 +91,17 @@ The following global variabels should be set:
 
 * VAR1
 * VAR2
+
+#### Functions
+
+module_<name>.<function>
+
+##### Usage
+
+module_<name>.<function>
+
+##### Usage
+
 
 ### http
 
@@ -70,6 +114,17 @@ The following global variabels should be set:
 * VAR1
 * VAR2
 
+#### Functions
+
+module_<name>.<function>
+
+##### Usage
+
+module_<name>.<function>
+
+##### Usage
+
+
 ### io
 
 Pipes, temp files and more.
@@ -80,6 +135,17 @@ The following global variabels should be set:
 
 * VAR1
 * VAR2
+
+#### Functions
+
+module_<name>.<function>
+
+##### Usage
+
+module_<name>.<function>
+
+##### Usage
+
 
 ### mysql
 
@@ -92,6 +158,17 @@ The following global variabels should be set:
 * VAR1
 * VAR2
 
+#### Functions
+
+module_<name>.<function>
+
+##### Usage
+
+module_<name>.<function>
+
+##### Usage
+
+
 ### pid
 
 Pid management.
@@ -102,6 +179,17 @@ The following global variabels should be set:
 
 * VAR1
 * VAR2
+
+#### Functions
+
+module_<name>.<function>
+
+##### Usage
+
+module_<name>.<function>
+
+##### Usage
+
 
 ### queue
 
@@ -114,6 +202,17 @@ The following global variabels should be set:
 * VAR1
 * VAR2
 
+#### Functions
+
+module_<name>.<function>
+
+##### Usage
+
+module_<name>.<function>
+
+##### Usage
+
+
 ### sec
 
 Security module including key-gen and some other stuff
@@ -124,6 +223,17 @@ The following global variabels should be set:
 
 * VAR1
 * VAR2
+
+#### Functions
+
+module_<name>.<function>
+
+##### Usage
+
+module_<name>.<function>
+
+##### Usage
+
 
 ### ssh
 
@@ -136,6 +246,17 @@ The following global variabels should be set:
 * VAR1
 * VAR2
 
+#### Functions
+
+module_<name>.<function>
+
+##### Usage
+
+module_<name>.<function>
+
+##### Usage
+
+
 ### string
 
 Simple string manipulation.
@@ -147,6 +268,17 @@ The following global variabels should be set:
 * VAR1
 * VAR2
 
+#### Functions
+
+module_<name>.<function>
+
+##### Usage
+
+module_<name>.<function>
+
+##### Usage
+
+
 ### varcheck
 
 Check if variables are defined and/or not empty.
@@ -157,3 +289,14 @@ The following global variabels should be set:
 
 * VAR1
 * VAR2
+
+#### Functions
+
+module_<name>.<function>
+
+##### Usage
+
+module_<name>.<function>
+
+##### Usage
+
