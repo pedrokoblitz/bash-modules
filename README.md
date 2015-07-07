@@ -31,20 +31,20 @@ The following global variabels should be set:
 async.run_on_background
 
 ##### Usage
-```shell
+```bash
 async.run_on_background my_script.sh
 ```
 
 async.spawn_via_loop
 
 ##### Usage
-```shell
+```bash
 ```
 
 async.spawn_via_parallel
 
 ##### Usage
-```shell
+```bash
 ```
 
 ### backup
@@ -63,13 +63,13 @@ The following global variabels should be set:
 backup.files
 
 ##### Usage
-```shell
+```bash
 ```
 
 backup.dirs
 
 ##### Usage
-```shell
+```bash
 ```
 
 ### cron
@@ -88,13 +88,13 @@ The following global variabels should be set:
 cron.add_job
 
 ##### Usage
-```shell
+```bash
 ```
 
 cron.remove_job
 
 ##### Usage
-```shell
+```bash
 ```
 
 ### fs
@@ -113,288 +113,288 @@ The following global variabels should be set:
 fs.cat
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.rm
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.rmdir
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.rmr
 
 ##### Usage
-```shell
+```bash
 ```
 fs.cp
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.mv
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.cpr
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.sort
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.uniq
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.is_empty
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.is_not_empty
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.is_readable
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.is_writable
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.is_executable
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.is_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.is_directory
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.exists
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.create_tmp_dir
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.delete_tmp_dir
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.create_dir_tree
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.create_dir_if_needed
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.create_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.create_app_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.create_temp_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.prepend_line_to_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.append_line_to_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.delete_line_from_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.get_last_line_from_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.get_first_line_from_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.delete_first_line_from_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.delete_first_line_from_file_if_empty
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.delete_last_line_from_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.line_in_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.add_line_to_file_if_not_exist
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.newline_to_space
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.remove_empty_lines
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.trim
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.remove_all_whitespace
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.count_lines
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.replace_in_file_recursively
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.replace_in_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.replace_in_same_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.replace_in_all_files
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.change_permission
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.executable_permission
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.readable_permission
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.group_own
 
 ##### Usage
-```shell
+```bash
 ```
 
 fs.group_apache_own
 
 ##### Usage
-```shell
+```bash
 ```
 
 ### http
@@ -413,49 +413,49 @@ The following global variabels should be set:
 http.download
 
 ##### Usage
-```shell
+```bash
 ```
 
 http.echo
 
 ##### Usage
-```shell
+```bash
 ```
 
 http.get
 
 ##### Usage
-```shell
+```bash
 ```
 
 http.post
 
 ##### Usage
-```shell
+```bash
 ```
 
 http.rest_get
 
 ##### Usage
-```shell
+```bash
 ```
 
 http.rest_post
 
 ##### Usage
-```shell
+```bash
 ```
 
 http.rest_put
 
 ##### Usage
-```shell
+```bash
 ```
 
 http.rest_delete
 
 ##### Usage
-```shell
+```bash
 ```
 
 ### io
@@ -474,139 +474,139 @@ The following global variabels should be set:
 io.null
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.output
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.output_escape
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.write
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.open
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.save
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.clear
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.save_and_clear
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.remove_tmp_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.remove_tmp_files
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.stdin_save
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.stdin_restore
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.stdin_close
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.stdout_save
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.stdout
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.stderr_close
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.open
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.write_line
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.read_line
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.close
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.stdout_to_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.stderr_to_file
 
 ##### Usage
-```shell
+```bash
 ```
 
 io.stderr_to_stdout
 
 ##### Usage
-```shell
+```bash
 ```
 
 ### mysql
@@ -625,73 +625,73 @@ The following global variabels should be set:
 mysql.exec_query
 
 ##### Usage
-```shell
+```bash
 ```
 
 mysql.exec_query_in_database
 
 ##### Usage
-```shell
+```bash
 ```
 
 mysql.exec_query_in_table
 
 ##### Usage
-```shell
+```bash
 ```
 
 mysql.dump
 
 ##### Usage
-```shell
+```bash
 ```
 
 mysql.upload
 
 ##### Usage
-```shell
+```bash
 ```
 
 mysql.create_database
 
 ##### Usage
-```shell
+```bash
 ```
 
 mysql.remove_database
 
 ##### Usage
-```shell
+```bash
 ```
 
 mysql.remove_tmp_files
 
 ##### Usage
-```shell
+```bash
 ```
 
 mysql.dump_database
 
 ##### Usage
-```shell
+```bash
 ```
 
 mysql.dump_all_databases
 
 ##### Usage
-```shell
+```bash
 ```
 
 mysql.restore_database
 
 ##### Usage
-```shell
+```bash
 ```
 
 mysql.insert_csv
 
 ##### Usage
-```shell
+```bash
 ```
 
 ### pid
@@ -710,61 +710,61 @@ The following global variabels should be set:
 pid.delay
 
 ##### Usage
-```shell
+```bash
 ```
 
 pid.self
 
 ##### Usage
-```shell
+```bash
 ```
 
 pid.last_run
 
 ##### Usage
-```shell
+```bash
 ```
 
 pid.get
 
 ##### Usage
-```shell
+```bash
 ```
 
 pid.kill_proc
 
 ##### Usage
-```shell
+```bash
 ```
 
 pid.kill_self
 
 ##### Usage
-```shell
+```bash
 ```
 
 pid.store
 
 ##### Usage
-```shell
+```bash
 ```
 
 pid.clear
 
 ##### Usage
-```shell
+```bash
 ```
 
 pid.lock
 
 ##### Usage
-```shell
+```bash
 ```
 
 pid.unlock
 
 ##### Usage
-```shell
+```bash
 ```
 
 ### queue
@@ -783,55 +783,55 @@ The following global variabels should be set:
 queue.add_first
 
 ##### Usage
-```shell
+```bash
 ```
 
 queue.add_last
 
 ##### Usage
-```shell
+```bash
 ```
 
 queue.get_first
 
 ##### Usage
-```shell
+```bash
 ```
 
 queue.get_last
 
 ##### Usage
-```shell
+```bash
 ```
 
 queue.get
 
 ##### Usage
-```shell
+```bash
 ```
 
 queue.remove_first
 
 ##### Usage
-```shell
+```bash
 ```
 
 queue.remove_last
 
 ##### Usage
-```shell
+```bash
 ```
 
 queue.clear
 
 ##### Usage
-```shell
+```bash
 ```
 
 queue.count
 
 ##### Usage
-```shell
+```bash
 ```
 
 ### sec
@@ -850,37 +850,37 @@ The following global variabels should be set:
 sec.generate_key_pair
 
 ##### Usage
-```shell
+```bash
 ```
 
 sec.create_keyring_dir
 
 ##### Usage
-```shell
+```bash
 ```
 
 sec.generate_protected_key_pair
 
 ##### Usage
-```shell
+```bash
 ```
 
 sec.check_keyring_dir
 
 ##### Usage
-```shell
+```bash
 ```
 
 sec.backup_keys
 
 ##### Usage
-```shell
+```bash
 ```
 
 sec.restore_keys
 
 ##### Usage
-```shell
+```bash
 ```
 
 ### ssh
@@ -899,18 +899,18 @@ The following global variabels should be set:
 ssh.main
 
 ##### Usage
-```shell
+```bash
 ```
 
 ssh.ssh
 
 ##### Usage
-```shell
+```bash
 ```
 ssh.scp
 
 ##### Usage
-```shell
+```bash
 ```
 
 ### string
@@ -929,109 +929,109 @@ The following global variabels should be set:
 string.column
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.split_by
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.csv_column
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.colons_to_spaces
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.eol_to_spaces
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.delete_spaces
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.truncate_duplicate_spaces
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.apostrophes_to_spaces
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.commas_to_spaces
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.tabs_to_spaces
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.delete_edge_spaces
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.string_inside_quotes
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.default_date_delimiter
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.date_str
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.time_str
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.time_with_seconds_str
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.date_time_str
 
 ##### Usage
-```shell
+```bash
 ```
 
 string.date_time_with_seconds_str
 
 ##### Usage
-```shell
+```bash
 ```
 
 ### varcheck
@@ -1050,23 +1050,23 @@ The following global variabels should be set:
 varcheck.is_empty
 
 ##### Usage
-```shell
+```bash
 ```
 
 varcheck.is_not_empty
 
 ##### Usage
-```shell
+```bash
 ```
 
 varcheck.is_defined
 
 ##### Usage
-```shell
+```bash
 ```
 
 varcheck.is_not_defined
 
 ##### Usage
-```shell
+```bash
 ```
