@@ -2,16 +2,13 @@
 
 module_pid() {
 
-    # default sleep time
-    readonly PID_DEFAULT_DELAY=5
-    # PID store
-    readonly PID_STORE=$HOME/.bash_pid/${APP_$BASHPID}.pid
+    readonly PID_STORE=$USER_HOME/.${PROG_DIR}/pid/${PROG_$BASHPID}.pid
 
     #
     #
     #
     pid.delay() {
-        sleep $PID_DEFAULT_DELAY
+        sleep 5
     }
 
     #
@@ -30,10 +27,9 @@ module_pid() {
 
     #
     #
-    #
     pid.get() {
         local FILE=$1
-        fs.cat FILE
+        cat FILE
     }
 
     #
@@ -92,7 +88,9 @@ module_pid() {
     #
     pid.unlock() {
         if ! [[ -f $FILE && pid.lock ]]; then
-            fs.rm -f $FILE
+            rm -f $FILE
         fi
     }
 }
+
+module_pid

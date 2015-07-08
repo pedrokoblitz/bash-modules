@@ -7,31 +7,23 @@ module_io() {
     declare IO_OUTPUT=$(fs.mktemp)
 
     #
-    #
-    #
-    io.null() {
-        fs.cat /dev/null
+    #    io.null() {
+        cat /dev/null
     }
 
     #
-    #
-    #
-    io.output() {
+    #    io.output() {
         local OUTPUT=$1
-        fs.cat $OUTPUT
+        cat $OUTPUT
     }
 
     #
-    #
-    #
-    io.output_escape() {
+    #    io.output_escape() {
         printf $(io.output)
     }
 
     #
-    #
-    #
-    io.write() {
+    #    io.write() {
         local INPUT=""
         local OUTPUT=$2
         if [[ fs.is_empty ]]; then
@@ -39,57 +31,45 @@ module_io() {
         else
             INPUT=$OUTPUT"\n"$1
         fi
-        fs.cat $INPUT >> $OUTPUT
+        cat $INPUT >> $OUTPUT
     }
 
     #
-    #
-    #
-    io.open() {
+    #    io.open() {
         local NAME=$1
-        local SAVED_FILE=$APP_DIR$DIR/$NAME.$APP_EXTENSION
+        local SAVED_FILE=$PROG_DIR$DIR/$NAME.$PROG_EXTENSION
         local OUTPUT=$3
-        fs.cat $SAVED_FILE > $OUTPUT
+        cat $SAVED_FILE > $OUTPUT
     }
 
     #
-    #
-    #
-    io.save() {
+    #    io.save() {
         local NAME=$1
-        local SAVED_FILE=$APP_DIR$DIR/$NAME.$APP_EXTENSION
+        local SAVED_FILE=${PROG_DIR}${DIR}/${NAME}.${PROG_EXTENSION}
         io.output_escape > $SAVED_FILE
     }
 
     #
-    #
-    #
-    io.clear() {
+    #    io.clear() {
         local OUTPUT=$1
         io.null > $OUTPUT
     }
 
     #
-    #
-    #
-    io.save_and_clear() {
+    #    io.save_and_clear() {
         io.save $1
         io.clear
     }
 
     #
-    #
-    #
-    io.remove_temp_file() {
+    #    io.remove_temp_file() {
         local OUTPUT=$1
-        fs.rm $OUTPUT
+        rm $OUTPUT
     }
 
     #
-    #
-    #
-    io.remove_temp_files() {
-        fs.rm $APP_DIR/tmp/*
+    #    io.remove_temp_files() {
+        rm $PROG_DIR/tmp/*
     }
 
     # Close input file descriptor n. --> n<&-
@@ -113,54 +93,40 @@ module_io() {
     #
  
     #
-    #
-    #
-    io.stdin_save() {
+    #    io.stdin_save() {
       local N=$1
       exec $N>&0 
     }
 
     #
-    #
-    #
-    io.stdin_restore() {
+    #    io.stdin_restore() {
       local N=$1
       exec 0<&$N
     }
 
     #
-    #
-    #
-    io.stdin_close() {
+    #    io.stdin_close() {
         0<&-, <&-
     }
 
     #
-    #
-    #
-    io.stdout_save() {
+    #    io.stdout_save() {
       local N=$1
       exec $N>&1
     }
 
     #
-    #
-    #
-    io.stdout() {
+    #    io.stdout() {
         1>&-, >&-
     }
 
     #
-    #
-    #
-    io.stderr_close() {
+    #    io.stderr_close() {
         2>&-
     }
 
     #
-    #
-    #
-    io.open() {
+    #    io.open() {
        local N=$1
        local FILE=$2
        exec $N<> $FILE  #open io.
@@ -176,44 +142,36 @@ module_io() {
     }
 
     #
-    #
-    #
-    io.read_line() {
+    #    io.read_line() {
         local N=$1
         read -r <&$N
     }
 
     #
-    #
-    #
-    io.close() {
+    #    io.close() {
 
       local N=$1
         exec $N>&- #close io.
     }
 
     #
-    #
-    #
-    io.stdout_to_file() {
+    #    io.stdout_to_file() {
       local FILE=$1
       exec 2>$FILE
     }
 
     #
-    #
-    #
-    io.stderr_to_file() {
+    #    io.stderr_to_file() {
       local FILE=$1
       exec 2>>$FILE
     }
 
     #
-    #
-    #
-    io.stderr_to_stdout() {
+    #    io.stderr_to_stdout() {
       exec 2>&1  
     }
 
     # command < input-file > output-file
 }
+
+module_io

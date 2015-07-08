@@ -11,17 +11,6 @@ The following global variabels should be set:
 
 #### Functions
 
-cat
-
-```bash
-fs.cat
-```
-
-rm
-
-```bash
-fs.rm
-```
 
 rmdir
 
@@ -112,16 +101,16 @@ exists
 fs.exists
 ```
 
-create_tmp_dir
+create_temp_dir
 
 ```bash
-fs.create_tmp_dir
+fs.create_temp_dir
 ```
 
-delete_tmp_dir
+delete_temp_dir
 
 ```bash
-fs.delete_tmp_dir
+fs.delete_temp_dir
 ```
 
 create_dir_tree

@@ -36,16 +36,16 @@ daemon_create_default_conf() {
 #
 #
 daemon_register() {
-	local APP=$1
-	update-rc.d $APP defaults
+	local PROG=$1
+	update-rc.d $PROG defaults
 }
 
 #
 #
 #
 daemon_unregister() {
-	local APP=$1
-	update-rc.d -f $APP remove
+	local PROG=$1
+	update-rc.d -f $PROG remove
 }
 
 #

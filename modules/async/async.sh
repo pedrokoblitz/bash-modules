@@ -35,11 +35,11 @@ module_async() {
         local N=$2
         # echo "Spawning 100 processes"
         # Without -j0 it will spawn one process per CPU.
-        parallel -j0 $SCRIPT ::: $(seq 1 $N)
         # echo $PARAMS_LIST | parallel -j0 $SCRIPT  ::: { 1..$N }
+        parallel -j0 $SCRIPT ::: $(seq 1 $N)
     }
 
-    # wget example, multiple urls
+    # 
     #
     #
     async.spawn_via_xargs() {
@@ -48,17 +48,4 @@ module_async() {
         local PARAM_LIST=$3
         echo $PARAM_LIST | xargs -n 1 -P $N $SCRIPT -q
     }
-
-    #while true
-    #do
-    #    if read LINE < $NC_OUTPUT; then
-    #        
-    #        if [[ "$LINE" == 'quit' ]]; then
-    #        
-    #            break
-    #        fi
-    #
-    #        echo $LINE
-    #    fi
-    #done
 }

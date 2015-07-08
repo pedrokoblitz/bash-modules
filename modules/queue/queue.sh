@@ -6,9 +6,6 @@ module_queue() {
     # fs
     # queue management
 
-    readonly QUEUE_FILE=""
-    readonly QUEUE_TYPE="<fifo|filo>"
-
     #
     #
     #
@@ -48,6 +45,7 @@ module_queue() {
     #
     queue.get() {
         local QUEUE=$1
+        local QUEUE_TYPE=$2
         QUEUE_COUNT=$(queue.count $1)
 
         if [[ $QUEUE_COUNT -gt 0 ]]; then

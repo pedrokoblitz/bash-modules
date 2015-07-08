@@ -28,3 +28,9 @@ spawn_via_parallel
 ```bash
 async.spawn_via_parallel
 ```
+
+spawn_via_xargs
+
+```bash
+async.spawn_via_xargs
+```

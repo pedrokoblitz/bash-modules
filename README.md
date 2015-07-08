@@ -15,4 +15,4 @@ Every module should have an usage() function describing its usage and features.
 
 ## Modules
 
-[async](./modules/async) [cron](./modules/cron) [fs](./modules/fs) [http](./modules/http) [io](./modules/io) [mysql](./modules/mysql) [pid](./modules/pid) [queue](./modules/queue) [sec](./modules/sec) [string](./modules/string) [varcheck](./modules/varcheck)
+[async](./modules/async) [fs](./modules/fs) [http](./modules/http) [io](./modules/io) [mysql](./modules/mysql) [pid](./modules/pid) [queue](./modules/queue) [sec](./modules/sec) [string](./modules/string) [varcheck](./modules/varcheck)

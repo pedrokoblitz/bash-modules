@@ -56,7 +56,7 @@ module_mysql() {
     }
 
     mysql.remove_temp_files() {
-        fs.rm $DB_OUTPUT_DIR/*gz > /dev/null 2>&1
+        rm $DB_OUTPUT_DIR/*gz > /dev/null 2>&1
     }
 
     mysql.dump_database() {

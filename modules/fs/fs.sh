@@ -5,15 +5,7 @@ module_fs() {
     # fs default
     # aliases for common bash commands
 
-    fs.cat() {
-        local PATH=$1
-        cat $PATH
-    }
-
-    fs.rm() {
-        local PATH=$1
-        rm $PATH
-    }
+    readonly SERVER_WEB_ROOT=/var/www/
 
     fs.rmdir() {
         local PATH=$1
@@ -32,26 +24,10 @@ module_fs() {
         cp -a $SOURCE $DESTINATION
     }
 
-    fs.mv() {
-        local SOURCE=$1
-        local DESTINATION=$2
-        mv $SOURCE $DESTINATION
-    }
-
     fs.cpr() {
         local SOURCE=$1
         local DESTINATION=$2
         cp -ar $SOURCE $DESTINATION
-    }
-
-    fs.sort() {
-        local SOURCE=$1
-        sort $SOURCE
-    }
-
-    fs.uniq() {
-        local SOURCE=$1
-        uniq $SOURCE
     }
 
     # fs
@@ -105,21 +81,29 @@ module_fs() {
 
     # fs
     # file create operations
-    fs.create_tmp_dir() {
+    fs.create_temp_dir() {
     	local PATH=$1
         mkdir -p $1/tmp
     }
 
-    fs.delete_tmp_dir() {
+    #
+    #
+    fs.delete_temp_dir() {
         local PATH=$1
-        rm -rf $1/tmp
+        rm -rf $1/tmp \
+            || rm -rf ./tmp \
+            || { echo "Failed to remove temp dir"; exit 1; }
     }
 
+    #
+    #
     fs.create_dir_tree() {
         local PATH=$1
         mkdir -p $1
     }
 
+    #
+    #
     fs.create_dir_if_needed() {
         local DIR=$1
         [[ -d $DIR ]] \
@@ -127,20 +111,27 @@ module_fs() {
         readlink -m $DIR
     }
 
+    #
+    #
     fs.create_file() {
         local PATH=$1
         local FILE=$2    
         touch $PATH$FILE
     }
 
+    #
+    #
     fs.create_app_file() {
-        local PATH=$APP_DIR
+        local PATH=$PROG_DIR
         local FILE=$1    
         fs.create_file $PATH $FILE
     }
 
+    #
+    #
     fs.create_temp_file() {
-        mktemp $APP_DIR/$APP.XXXXXXXXXX.tmp || { echo "Failed to create temp file"; exit 1; }
+        mktemp /tmp/$PROG.XXXXXXXXXX.tmp \
+            || { echo "Failed to create temp file"; exit 1; }
     }
 
     # fs 
@@ -152,49 +143,67 @@ module_fs() {
         echo $LINE | cat - $FILE > temp && mv temp $FILE
     }
 
+    #
+    #
     fs.append_line_to_file() {
         local FILE=$1; shift
         local LINE=$@
         echo $LINE >> $FILE
     }
 
+    #
+    #
     fs.delete_line_from_file() {
         local FILE=$1; shift
         local LINE=$@
         sed -i "/^$LINE/d" $FILE
     }
 
+    #
+    #
     fs.get_last_line_from_file() {
         local FILE=$1
         tail -n 1 $FILE
     }
 
+    #
+    #
     fs.get_first_line_from_file() {
         local FILE=$1
         head -1 $FILE
     }
 
+    #
+    #
     fs.delete_first_line_from_file() {
         local FILE=$1
         tail -n +2 $FILE
     }
 
+    #
+    #
     fs.delete_first_line_from_file_if_empty() {
         local FILE=$1
         sed "1{/^$/d}" < $FILE
     }
 
+    #
+    #
     fs.delete_last_line_from_file() {
         local FILE=$1
         truncate -s -"$(fs.get_last_line_from_file $FILE | wc -c)" $FILE
     }
 
+    #
+    #
     fs.line_in_file() {
         local FILE=$1; shift
         local LINE=$@
         grep -q "^$LINE$" $FILE
     }
 
+    #
+    #
     fs.add_line_to_file_if_not_exist() {
         local FILE=$1; shift
         local LINE=$@
@@ -202,31 +211,43 @@ module_fs() {
             || add_line_to_file $FILE $LINE
     }
 
+    #
+    #
     fs.newline_to_space() {
         local FILE=$1
         sed -i ':a;N;$!ba;s/\n/ /g' $FILE
     }
 
+    #
+    #
     fs.remove_empty_lines() {
         local FILE=$1
         sed -i '/^\s*$/d' $FILE
     }
 
+    #
+    #
     fs.trim() {
         local FILE=$1
         sed -i 's/[ \t]*$//' $FILE
     }
 
+    #
+    #
     fs.remove_all_whitespace() {
         local FILE=$1
         cat $FILE | tr -d "[:space:]" > $FILE
     }
 
+    #
+    #
     fs.count_lines() {
         local FILE=$1
         wc -l < $FILE
     }
 
+    #
+    #
     fs.replace_in_file_recursively() {
         local DIR=$1
         local STRING=$2
@@ -234,6 +255,8 @@ module_fs() {
         find $DIR -type f -print0 | xargs -0 sed -i s/$STRING/$REPLACEMENT/g
     }
 
+    #
+    #
     fs.replace_in_file() {
         local FILE=$1
         local STRING=$2
@@ -241,6 +264,8 @@ module_fs() {
         cat $FILE | sed s/$STRING/$REPLACEMENT/ > $FILE
     }
 
+    #
+    #
     fs.replace_in_same_file() {
         local ORIGINAL=$1
         local STRING=$3
@@ -249,6 +274,8 @@ module_fs() {
         cat $ORIGINAL | sed s/$STRING/$REPLACEMENT/g > $NEW
     }
 
+    #
+    #
     fs.replace_in_all_files() {
         local STRING=$1
         local REPLACEMENT=$2
@@ -269,18 +296,24 @@ module_fs() {
         fi
     }
 
+    #
+    #
     fs.executable_permission() {
         local TARGET=$1
         local PERMISSION=+x
         fs.change_permission $PERMISSION $TARGET
     }
 
+    #
+    #
     fs.readable_permission() {
         local TARGET=$1
         local PERMISSION=755
         fs.change_permission $PERMISSION $TARGET
     }
 
+    #
+    #
     fs.group_own() {
         local TARGET=$3
         local USER=$1
@@ -288,7 +321,11 @@ module_fs() {
         chown $USER:$GROUP $TARGET
     }
 
-    fs.group_apache_own() {
-        fs.group_own www-data www-data /var/www/
+    #
+    #
+    fs.group_apache_webroot_own() {
+        chown -R www-data:www-data $SERVER_WEB_ROOT
     }
 }
+
+module_fs
