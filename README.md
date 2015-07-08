@@ -15,24 +15,24 @@ Every module should have an usage() function describing its usage and features.
 
 ## Modules
 
-[async](./modules/async/README.md)
+[async](./modules/async)
 
-[cron](./modules/cron/README.md)
+[cron](./modules/cron)
 
-[fs](./modules/fs/README.md)
+[fs](./modules/fs)
 
-[http](./modules/http/README.md)
+[http](./modules/http)
 
-[io](./modules/io/README.md)
+[io](./modules/io)
 
-[mysql](./modules/mysql/README.md)
+[mysql](./modules/mysql)
 
-[pid](./modules/pid/README.md)
+[pid](./modules/pid)
 
-[queue](./modules/queue/README.md)
+[queue](./modules/queue)
 
-[sec](./modules/sec/README.md)
+[sec](./modules/sec)
 
-[string](./modules/string/README.md)
+[string](./modules/string)
 
-[varcheck](./modules/varcheck/README.md)
+[varcheck](./modules/varcheck)
