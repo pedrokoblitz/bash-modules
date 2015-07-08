@@ -15,24 +15,4 @@ Every module should have an usage() function describing its usage and features.
 
 ## Modules
 
-##### [async](/tree/master/modules/tree/master/modules/async/README.md)
-
-##### [cron](/tree/master/modules/tree/master/modules/cron/README.md)
-
-##### [fs](/tree/master/modules/tree/master/modules/fs/README.md)
-
-##### [http](/tree/master/modules/tree/master/modules/http/README.md)
-
-##### [io](/tree/master/modules/tree/master/modules/io/README.md)
-
-##### [mysql](/tree/master/modules/tree/master/modules/mysql/README.md)
-
-##### [pid](/tree/master/modules/tree/master/modules/pid/README.md)
-
-##### [queue](/tree/master/modules/tree/master/modules/queue/README.md)
-
-##### [sec](/tree/master/modules/tree/master/modules/sec/README.md)
-
-##### [string](/tree/master/modules/tree/master/modules/string/README.md)
-
-##### [varcheck](/tree/master/modules/tree/master/modules/varcheck/README.md)
+[async](./modules/async) [cron](./modules/cron) [fs](./modules/fs) [http](./modules/http) [io](./modules/io) [mysql](./modules/mysql) [pid](./modules/pid) [queue](./modules/queue) [sec](./modules/sec) [string](./modules/string) [varcheck](./modules/varcheck)
