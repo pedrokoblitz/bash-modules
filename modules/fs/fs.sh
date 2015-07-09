@@ -252,7 +252,7 @@ module_fs() {
         local DIR=$1
         local STRING=$2
         local REPLACEMENT=$3
-        find $DIR -type f -print0 | xargs -0 sed -i s/$STRING/$REPLACEMENT/g
+        find $DIR -type f -print0 | xargs -0 sed -i "s/$STRING/$REPLACEMENT/g"
     }
 
     #
@@ -261,7 +261,7 @@ module_fs() {
         local FILE=$1
         local STRING=$2
         local REPLACEMENT=$3
-        cat $FILE | sed s/$STRING/$REPLACEMENT/ > $FILE
+        cat $FILE | sed "s/$STRING/$REPLACEMENT/" > $FILE
     }
 
     #
@@ -271,7 +271,7 @@ module_fs() {
         local STRING=$3
         local REPLACEMENT=$4
         local NEW=$2
-        cat $ORIGINAL | sed s/$STRING/$REPLACEMENT/g > $NEW
+        cat $ORIGINAL | sed "s/$STRING/$REPLACEMENT/g" > $NEW
     }
 
     #
@@ -280,7 +280,7 @@ module_fs() {
         local STRING=$1
         local REPLACEMENT=$2
         local PATTERN=$3 # example -> "*.jpg"
-        sed -i s/$STRING/$REPLACEMENT/g $PATTERN
+        sed -i "s/$STRING/$REPLACEMENT/g" $PATTERN
     }
 
     # fs permission
