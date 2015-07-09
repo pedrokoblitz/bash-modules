@@ -12,14 +12,14 @@ module_sec() {
     sec.generate_key_pair() {
         local $KEYRING=$1
         ssh-keygen -t rsa
-        cat keypair >> $HOME/.ssh/authorized_keys
+        cat keypair >> $USER_HOME/.ssh/authorized_keys
     }
 
     #
     #
     #
     sec.create_keyring_dir() {
-        local KEYRING_DIR=$APP_DIR/keyring/$KEYRING/
+        local KEYRING_DIR=$PROG_DIR/keyring/$KEYRING/
         if ! [[ -d $KEYRING_DIR ]]; then
             fs.mkdir $KEYRING_DIR
         fi 
@@ -61,3 +61,5 @@ module_sec() {
         cp $SSH_KEYS_BACKUP_DIR/$KEYRING/* $SSH_KEYS_DIR/
     }
 }
+
+module_sec
