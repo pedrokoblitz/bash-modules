@@ -1,5 +1,9 @@
 # bash-modules
 
+## Inspired by
+[Defensive BASH Programming](http://www.kfirlavi.com/blog/2012/11/14/defensive-bash-programming/)
+[Writing Robust Bash Shell Scripts](http://www.davidpashley.com/articles/writing-robust-shell-scripts/)
+
 ## Configuration
 
 the following global variables should be defined for every script
