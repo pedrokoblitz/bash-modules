@@ -3,7 +3,7 @@
 module_varcheck() {
 
     #
-    #
+    # empty
     #
 	varcheck.is_empty() {
 	    local var=$1
@@ -11,26 +11,10 @@ module_varcheck() {
 	}
 
     #
-    #
+    # not empty
     #
 	varcheck.is_not_empty() {
 	    local var=$1
 	    [[ -n $var ]]
-	}
-
-    #
-    #
-    #
-	varcheck.is_defined() {
-	    local var=$1
-	    is_not_empty $var
-	}
-
-    #
-    #
-    #
-	varcheck.is_not_defined() {
-	    local var=$1
-	    is_empty $var
 	}
 }

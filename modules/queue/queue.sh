@@ -7,7 +7,7 @@ module_queue() {
     # queue management
 
     #
-    #
+    # add item to beggining of queue
     #
     queue.add_first() {
         local QUEUE=$1
@@ -16,7 +16,7 @@ module_queue() {
     }
 
     #
-    #
+    # add item to end of queue
     #
     queue.add_last() {
         local QUEUE=$1
@@ -25,7 +25,7 @@ module_queue() {
     }
 
     #
-    #
+    # get first item
     #
     queue.get_first() {
         local QUEUE=$1
@@ -33,7 +33,7 @@ module_queue() {
     }
 
     #
-    #
+    # get last item
     #
     queue.get_last() {
         local QUEUE=$1
@@ -41,7 +41,7 @@ module_queue() {
     }
 
     #
-    #
+    # get item for queue type
     #
     queue.get() {
         local QUEUE=$1
@@ -58,7 +58,7 @@ module_queue() {
     }
 
     #
-    #
+    # remove first item 
     #
     queue.remove_first() {
         local QUEUE=$1
@@ -66,7 +66,7 @@ module_queue() {
     }
 
     #
-    #
+    # remove last item
     #
     queue.remove_last() {
         local QUEUE=$1
@@ -74,7 +74,7 @@ module_queue() {
     }
 
     #
-    #
+    # clear queue
     #
     queue.clear() {
         local QUEUE=$1
@@ -82,7 +82,7 @@ module_queue() {
     }
 
     #
-    #
+    # get queue length
     #
     queue.count() {
         local QUEUE=$1

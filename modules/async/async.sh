@@ -3,7 +3,7 @@
 module_async() {
 
     #
-    #
+    # run script on background with nohup
     #
     async.run_on_background() {
         local SCRIPT=$1
@@ -13,7 +13,7 @@ module_async() {
     }
 
     #
-    #
+    # loop in background using subshells
     #
     async.spawn_via_loop() {
         local SCRIPT=$1
@@ -28,7 +28,7 @@ module_async() {
     }
 
     #
-    #
+    # loop using parallel
     #
     async.spawn_via_parallel() {
         local SCRIPT=$1
@@ -40,7 +40,7 @@ module_async() {
     }
 
     # 
-    #
+    # loop using xargs
     #
     async.spawn_via_xargs() {
         local SCRIPT=$1

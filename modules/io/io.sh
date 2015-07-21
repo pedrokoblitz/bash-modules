@@ -7,26 +7,34 @@ module_io() {
     declare IO_OUTPUT=$(fs.mktemp)
 
     #
-    #    io.null() {
+    # returns null
+    #
+    io.null() {
         cat /dev/null
     }
 
     #
-    #    io.output() {
+    # returns output
+    #
+    io.output() {
         local OUTPUT=$1
         cat $OUTPUT
     }
 
     #
-    #    io.output_escape() {
-        printf $(io.output)
+    # returns escaped output
+    #    
+	io.output_escape() {
+        printf $(io.output $1) 
     }
 
     #
-    #    io.write() {
+    # write/append to output
+    #    
+	io.write() {
         local INPUT=""
         local OUTPUT=$2
-        if [[ fs.is_empty ]]; then
+        if [[ fs.is_empty $INPUT ]]; then
             INPUT=$1
         else
             INPUT=$OUTPUT"\n"$1
@@ -35,7 +43,9 @@ module_io() {
     }
 
     #
-    #    io.open() {
+    # open file and write to output
+    #    
+	io.open() {
         local NAME=$1
         local SAVED_FILE=$PROG_DIR$DIR/$NAME.$PROG_EXTENSION
         local OUTPUT=$3
@@ -43,32 +53,40 @@ module_io() {
     }
 
     #
-    #    io.save() {
+    # save file
+    #    
+	io.save() {
         local NAME=$1
         local SAVED_FILE=${PROG_DIR}${DIR}/${NAME}.${PROG_EXTENSION}
         io.output_escape > $SAVED_FILE
     }
 
     #
-    #    io.clear() {
+    # clear file
+    #    
+	io.clear() {
         local OUTPUT=$1
         io.null > $OUTPUT
     }
 
     #
-    #    io.save_and_clear() {
+    #
+    #    
+	io.save_and_clear() {
         io.save $1
         io.clear
     }
 
     #
-    #    io.remove_temp_file() {
+    #    
+	io.remove_temp_file() {
         local OUTPUT=$1
         rm $OUTPUT
     }
 
     #
-    #    io.remove_temp_files() {
+    #    
+	io.remove_temp_files() {
         rm $PROG_DIR/tmp/*
     }
 
@@ -83,7 +101,8 @@ module_io() {
     # exec 5>/tmp/foo       # open /tmp/foo for writing, on fd 5
     # exec 6</tmp/bar       # open /tmp/bar for reading, on fd 6
     # cat <&6 |             # call cat, with its standard input connected to
-    #                       # what is currently fd 6, i.e. /tmp/bar
+    #    
+	                   # what is currently fd 6, i.e. /tmp/bar
     # while read a; do      # 
     #   echo $a >&5         # write to fd 5, i.e. /tmp/foo
     # done                  # 
@@ -93,40 +112,47 @@ module_io() {
     #
  
     #
-    #    io.stdin_save() {
+    #    
+	io.stdin_save() {
       local N=$1
       exec $N>&0 
     }
 
     #
-    #    io.stdin_restore() {
+    #    
+	io.stdin_restore() {
       local N=$1
       exec 0<&$N
     }
 
     #
-    #    io.stdin_close() {
+    #    
+	io.stdin_close() {
         0<&-, <&-
     }
 
     #
-    #    io.stdout_save() {
+    #    
+	io.stdout_save() {
       local N=$1
       exec $N>&1
     }
 
     #
-    #    io.stdout() {
+    #    
+	io.stdout() {
         1>&-, >&-
     }
 
     #
-    #    io.stderr_close() {
+    #    
+	io.stderr_close() {
         2>&-
     }
 
     #
-    #    io.open() {
+    #    
+	io.open() {
        local N=$1
        local FILE=$2
        exec $N<> $FILE  #open io.
@@ -142,32 +168,37 @@ module_io() {
     }
 
     #
-    #    io.read_line() {
+    #    
+	io.read_line() {
         local N=$1
         read -r <&$N
     }
 
     #
-    #    io.close() {
+    #    
+	io.close() {
 
       local N=$1
         exec $N>&- #close io.
     }
 
     #
-    #    io.stdout_to_file() {
+    #    
+	io.stdout_to_file() {
       local FILE=$1
       exec 2>$FILE
     }
 
     #
-    #    io.stderr_to_file() {
+    #    
+	io.stderr_to_file() {
       local FILE=$1
       exec 2>>$FILE
     }
 
     #
-    #    io.stderr_to_stdout() {
+    #    
+	io.stderr_to_stdout() {
       exec 2>&1  
     }
 

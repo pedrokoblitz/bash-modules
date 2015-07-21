@@ -5,8 +5,8 @@ module_http() {
     # http operations
     # get & post / rest / downloads
 
-    #
-    #
+    # 
+    # echo url output to stdout
     #
     http.echo() {
         local URL=$1
@@ -14,7 +14,7 @@ module_http() {
     }
 
     #
-    #
+    # download url to file
     #
     http.download() {
         local URL=$1
@@ -23,7 +23,7 @@ module_http() {
     }
 
     #
-    #
+    # get request
     #
     http.get() {
         local URL=$1
@@ -31,7 +31,7 @@ module_http() {
     }
 
     #
-    #
+    # post request
     #
     http.post() {
         local URL=$1
@@ -40,7 +40,7 @@ module_http() {
     }
 
     #
-    #
+    # get request in json
     #
     http.rest_get() {
         local URL=$1
@@ -48,7 +48,7 @@ module_http() {
     }
 
     #
-    #
+    # post request in json
     #
     http.rest_post() {
         local URL=$1
@@ -57,7 +57,7 @@ module_http() {
     }
 
     #
-    #
+    # put request in json
     #
     http.rest_put() {
         local URL=$1
@@ -66,7 +66,7 @@ module_http() {
     }
 
     #
-    #
+    # delete request in json
     #
     http.rest_delete() {
         local URL=$1

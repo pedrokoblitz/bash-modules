@@ -1,5 +1,8 @@
 #!/bin/bash
 
+readonly DB_USER=""
+readonly DB_PASSWORD=""
+readonly DB_HOST=""
 readonly SOURCE_DB="SECULT_Portal"
 readonly TARGET_DB=""
 readonly DUMP_FILE="~/secult_db.sql"
@@ -40,3 +43,5 @@ rodar_local() {
 	load_db_data
 	check_migration
 }
+
+rodar_local

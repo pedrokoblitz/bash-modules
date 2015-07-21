@@ -5,6 +5,9 @@ module_mysql() {
     # db
     # create tables, dump, restore
 
+    #
+    #
+    #
     mysql.install() {
         if [ "$EUID" -ne 0 ]
           then echo "Please run as root"
@@ -19,6 +22,9 @@ module_mysql() {
         mysql_secure_installation -n -y
     }
 
+    #
+    #
+    #
     mysql.create_user() {
         local USER=$1
         local HOST=$2
@@ -28,12 +34,18 @@ module_mysql() {
         mysql.exec_query $QUERY
     }
 
+    #
+    #
+    #
     mysql.exec_query() {
         local $QUERY=$1
 
         mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST -e $QUERY
     }
 
+    #
+    #
+    #
     mysql.exec_query_in_database() {
         local $DB_NAME=$1
         local $QUERY=$2
@@ -41,6 +53,9 @@ module_mysql() {
         mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST $DB_NAME -e $QUERY
     }
 
+    #
+    #
+    #
     mysql.exec_query_in_table() {
         local $DB_NAME=$1
         local TABLE=$2
@@ -49,6 +64,9 @@ module_mysql() {
         mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST $DB_NAME $TABLE -e $QUERY
     }
 
+    #
+    #
+    #
     mysql.dump() {
         local DB_NAME=$1
         local FILE=$2
@@ -56,6 +74,9 @@ module_mysql() {
         mysqldump --force --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST --databases $DB_NAME > $DB_OUTPUT_DIR"/"$FILE
     }
 
+    #
+    #
+    #
     mysql.upload() {
         local DB_NAME=$1
         local FILE=$2
@@ -64,6 +85,9 @@ module_mysql() {
 
     }
 
+    #
+    #
+    #
     mysql.create_database() {
         local DB_NAME=$1
         local QUERY="CREATE DATABASE $DB_NAME;" 
@@ -71,6 +95,9 @@ module_mysql() {
         mysql.exec_in_server $QUERY
     }
 
+    #
+    #
+    #
     mysql.remove_database() {
         local DB_NAME=$1
         local QUERY="DROP DATABASE $DB_NAME;"   
@@ -78,10 +105,16 @@ module_mysql() {
         mysql.exec_in_server $QUERY
     }
 
+    #
+    #
+    #
     mysql.remove_temp_files() {
         rm $DB_OUTPUT_DIR/*gz > /dev/null 2>&1
     }
 
+    #
+    #
+    #
     mysql.dump_database() {
         local DB_NAME=$1
         local DATESTRING=$(dt_date_str)
@@ -91,6 +124,9 @@ module_mysql() {
         fs.cp $DB_OUTPUT_DIR"/""."$DB_NAME"."$DATESTRING"sql"
     }
 
+    #
+    #
+    #
     mysql.dump_all_databases() {
         local DATABASES=$(mysql --user=$DB_USER --password=$DB_PASSWORD -e "SHOW DATABASES;" | tr -d "| " | grep -v Database)
          
@@ -101,6 +137,9 @@ module_mysql() {
         done
     }
 
+    #
+    #
+    #
     mysql.restore_database() {
         local DB_NAME=$1
         gunzip < ${DB_OUTPUT_DIR}/${DB_NAME}.sql | mysql -u$DB_USER -p$DB_PASSWORD $DB_NAME
