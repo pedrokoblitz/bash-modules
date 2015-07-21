@@ -5,6 +5,29 @@ module_mysql() {
     # db
     # create tables, dump, restore
 
+    mysql.install() {
+        if [ "$EUID" -ne 0 ]
+          then echo "Please run as root"
+          exit
+        fi
+
+        local MYSQL_PASSWORD=$1
+        debconf-set-selections <<< 'mysql-server mysql-server/root_password password $MYSQL_PASSWORD'
+        debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password $MYSQL_PASSWORD'
+        apt-get -y install mysql-server
+        mysql_install_db
+        mysql_secure_installation -n -y
+    }
+
+    mysql.create_user() {
+        local USER=$1
+        local HOST=$2
+        local PASSWORD=$3
+        local QUERY="CREATE USER $USER@$HOST IDENTIFIED BY $PASSWORD;GRANT ALL PRIVILEGES ON * . * TO $USER@$HOST; FLUSH PRIVILEGES;"
+        
+        mysql.exec_query $QUERY
+    }
+
     mysql.exec_query() {
         local $QUERY=$1
 
@@ -80,7 +103,6 @@ module_mysql() {
 
     mysql.restore_database() {
         local DB_NAME=$1
-
         gunzip < ${DB_OUTPUT_DIR}/${DB_NAME}.sql | mysql -u$DB_USER -p$DB_PASSWORD $DB_NAME
     }
 
