@@ -5,7 +5,7 @@ module_fs() {
     # fs default
     # aliases for common bash commands
 
-    readonly SERVER_WEB_ROOT=/var/www/
+    declare SERVER_WEB_ROOT=/var/www/
 
     fs.rmdir() {
         local PATH=$1
