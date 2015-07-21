@@ -26,8 +26,8 @@ module_mysql() {
     #
     #
     mysql.create_user() {
-        local USER=$1
-        local HOST=$2
+        local HOST=$1
+        local USER=$2
         local PASSWORD=$3
         local QUERY="CREATE USER $USER@$HOST IDENTIFIED BY $PASSWORD;GRANT ALL PRIVILEGES ON * . * TO $USER@$HOST; FLUSH PRIVILEGES;"
         

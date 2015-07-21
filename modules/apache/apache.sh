@@ -58,14 +58,3 @@ module_apache() {
 	}
 
 }
-
-module_apache
-
-apache.apt_update
-apache.install_apache
-apache.install_mysql root
-apache.install_php
-apache.generate_php_info
-apache.restart_apache
-apache.add_site cultura
-apache.restart_apache
