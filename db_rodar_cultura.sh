@@ -1,10 +1,10 @@
 #!/bin/bash
 
-readonly DB_USER=""
-readonly DB_PASSWORD=""
-readonly DB_HOST=""
+readonly DB_USER="CulturaP"
+readonly DB_PASSWORD="fApPxzENYETG32F7"
+readonly DB_HOST="192.168.3.35"
 readonly SOURCE_DB="SECULT_Portal"
-readonly TARGET_DB=""
+readonly TARGET_DB="SECULT_Portal"
 readonly DUMP_FILE="~/secult_db.sql"
 
 dump_db_data() {
@@ -40,5 +40,4 @@ check_migration() {
 
 rodar_cultura() {
 	dump_db_data
-	replace_encoding
 }

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-readonly DB_USER=""
-readonly DB_PASSWORD=""
-readonly DB_HOST=""
+readonly DB_USER="CulturaP"
+readonly DB_PASSWORD="fApPxzENYETG32F7"
+readonly DB_HOST="localhost"
 readonly SOURCE_DB="SECULT_Portal"
 readonly TARGET_DB=""
 readonly DUMP_FILE="~/secult_db.sql"
@@ -39,6 +39,7 @@ check_migration() {
 }
 
 rodar_local() {
+	replace_encoding
 	create_and_verify_db
 	load_db_data
 	check_migration

@@ -39,7 +39,6 @@ module_mysql() {
     #
     mysql.exec_query() {
         local $QUERY=$1
-
         mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST -e $QUERY
     }
 
