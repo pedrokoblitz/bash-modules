@@ -246,43 +246,6 @@ module_fs() {
         wc -l < $FILE
     }
 
-    #
-    #
-    fs.replace_in_file_recursively() {
-        local DIR=$1
-        local STRING=$2
-        local REPLACEMENT=$3
-        find $DIR -type f -print0 | xargs -0 sed -i "s/$STRING/$REPLACEMENT/g"
-    }
-
-    #
-    #
-    fs.replace_in_file() {
-        local FILE=$1
-        local STRING=$2
-        local REPLACEMENT=$3
-        cat $FILE | sed "s/$STRING/$REPLACEMENT/" > $FILE
-    }
-
-    #
-    #
-    fs.replace_in_same_file() {
-        local ORIGINAL=$1
-        local STRING=$3
-        local REPLACEMENT=$4
-        local NEW=$2
-        cat $ORIGINAL | sed "s/$STRING/$REPLACEMENT/g" > $NEW
-    }
-
-    #
-    #
-    fs.replace_in_all_files() {
-        local STRING=$1
-        local REPLACEMENT=$2
-        local PATTERN=$3 # example -> "*.jpg"
-        sed -i "s/$STRING/$REPLACEMENT/g" $PATTERN
-    }
-
     # fs permission
     # common ownership and permission operations
     fs.change_permission() {
