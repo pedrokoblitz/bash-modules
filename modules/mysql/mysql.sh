@@ -14,9 +14,8 @@ module_mysql() {
           exit
         fi
 
-        local MYSQL_PASSWORD=$1
-        debconf-set-selections <<< 'mysql-server mysql-server/root_password password $MYSQL_PASSWORD'
-        debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password $MYSQL_PASSWORD'
+        debconf-set-selections <<< 'mysql-server mysql-server/root_password password'
+        debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password'
         apt-get -y install mysql-server
         mysql_install_db
         mysql_secure_installation -n -y

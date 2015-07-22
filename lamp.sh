@@ -10,8 +10,8 @@ source modules/mysql/mysql.sh
 module_mysql
 
 lamp.install() {
-    mysql.install abcdi2ea
-    mysql.create_user localhost pedro abcdi2ea
+    mysql.install
+    mysql.create_user "localhost" "pedro" "abcdi2ea"
     apache.install_apache
     apache.install_php
     apache.restart
