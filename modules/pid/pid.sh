@@ -33,7 +33,7 @@ module_pid() {
     #
     pid.kill_proc() {
         local PID=$1
-        kill -9 $PID_STORE
+        kill -9 $PID
     }
 
     # kill this process
@@ -63,7 +63,7 @@ module_pid() {
     # clear file
     #
     pid.clear() {
-        echo /dev/null > $PID_FILE
+        echo /dev/null > $PID_STORE
     }
 
     # generate lockfile
@@ -76,6 +76,7 @@ module_pid() {
     # remove lockfile
     #
     pid.unlock() {
+        local FILE=$PID_STORE
         if ! [[ -f $FILE && pid.lock ]]; then
             rm -f $FILE
         fi

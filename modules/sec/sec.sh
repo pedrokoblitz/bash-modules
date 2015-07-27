@@ -14,7 +14,7 @@ module_sec() {
         cat keypair >> $USER_HOME/.ssh/authorized_keys
     }
 
-    # create keys dir
+    # create keyring dir
     #
     sec.create_keyring_dir() {
         local KEYRING_DIR=$PROG_DIR/keyring/$KEYRING/
@@ -63,6 +63,12 @@ module_sec() {
         local USERNAME=$1
         local SERVER_ADDRESS=$2
         ssh-copy-id $USERNAME@$SERVER_ADDRESS
+    }
+
+    #
+    #
+    sec.create_ssh_config_file() {
+        
     }
 
     # allow root ssh login

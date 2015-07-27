@@ -5,7 +5,7 @@ module_mysql() {
     # db
     # create tables, dump, restore
 
-    #
+    # install via apt
     #
     mysql.install() {
         if [ "$EUID" -ne 0 ]
@@ -20,7 +20,7 @@ module_mysql() {
         mysql_secure_installation -n -y
     }
 
-    #
+    # create mysql user
     #
     mysql.create_user() {
         local HOST=$1
@@ -28,70 +28,58 @@ module_mysql() {
         local PASSWORD=$3
         local QUERY="CREATE USER $USER@$HOST IDENTIFIED BY $PASSWORD;GRANT ALL PRIVILEGES ON * . * TO $USER@$HOST; FLUSH PRIVILEGES;"
         
-        mysql.exec_query $QUERY
+        mysql.exec $QUERY
     }
 
-    #
-    #
-    mysql.exec_query() {
-        local $QUERY=$1
-        mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST -e $QUERY
-    }
-
-    #
-    #
-    mysql.exec_query_in_database() {
-        local $DB_NAME=$1
-        local $QUERY=$2
-
-        mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST $DB_NAME -e $QUERY
-    }
-
-    #
-    #
-    mysql.exec_query_in_table() {
-        local $DB_NAME=$1
-        local TABLE=$2
-        local $QUERY=$3
-
-        mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST $DB_NAME $TABLE -e $QUERY
-    }
-
-    #
-    #
-    mysql.dump() {
-        local DB_NAME=$1
-        local FILE=$2
-
-        mysqldump --force --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST --databases $DB_NAME > $DB_OUTPUT_DIR"/"$FILE
-    }
-
-    #
-    #
-    mysql.upload() {
-        local DB_NAME=$1
-        local FILE=$2
-
-        mysql --force --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST --databases $DB_NAME < $DB_OUTPUT_DIR"/"$FILE
-
-    }
-
-    #
+    # create database
     #
     mysql.create_database() {
         local DB_NAME=$1
         local QUERY="CREATE DATABASE $DB_NAME;" 
         
-        mysql.exec_in_server $QUERY
+        mysql.exec $QUERY
     }
 
-    #
+    # remove database
     #
     mysql.remove_database() {
         local DB_NAME=$1
         local QUERY="DROP DATABASE $DB_NAME;"   
         
-        mysql.exec_in_server $QUERY
+        mysql.exec $QUERY
+    }
+
+    # drops and recreates db
+    #
+    mysql.refresh_db() {
+        local $DB_NAME=$1
+        mysql.remove_database $DB_NAME
+        mysql.create_database $DB_NAME
+    }
+
+    # executes query in database
+    #
+    mysql.exec() {
+        local $DB_NAME=$1
+        local $QUERY=$2
+        mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST $DB_NAME -e $QUERY
+    }
+
+    # dumps db
+    #
+    mysql.dump() {
+        local DB_NAME=$1
+        local FILE=$2
+        mysqldump --force --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST --databases $DB_NAME > $DB_OUTPUT_DIR"/"$FILE
+    }
+
+    # hydrates db
+    #
+    mysql.upload() {
+        local DB_NAME=$1
+        local FILE=$2
+        mysql --force --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST --databases $DB_NAME < $DB_OUTPUT_DIR"/"$FILE
+
     }
 
     #

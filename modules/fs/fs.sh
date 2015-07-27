@@ -2,85 +2,95 @@
 
 module_fs() {
 
-    # fs default
     # aliases for common bash commands
 
     declare SERVER_WEB_ROOT=/var/www/
 
-    fs.rmdir() {
+    #
+    #
+    fs.rm_dir() {
         local PATH=$1
         rm -rf $PATH
     }
 
-    fs.rmr() {
+    #
+    #
+    fs.rm_recursive() {
         local PATH=$1
         local PATTERN=$1
         find $PATH -name $PATTERN | xargs rm
     }
 
-    fs.cp() {
-        local SOURCE=$1
-        local DESTINATION=$2
-        cp -a $SOURCE $DESTINATION
-    }
-
-    fs.cpr() {
+    #
+    #
+    fs.cp_recursive() {
         local SOURCE=$1
         local DESTINATION=$2
         cp -ar $SOURCE $DESTINATION
     }
 
-    # fs
     # check file state
 
+    #
+    #
     fs.is_empty() {
         local FILE=$1
         [[ -z $FILE ]]
     }
 
+    #
+    #
     fs.is_not_empty() {
         local FILE=$1
         [[ -n $FILE ]]
     }
 
     # -r file     Check if file is readable.
+    #
     fs.is_readable() {
         local FILE=$1
         [[ -r $FILE ]]
     }
 
     # -w file     Check if file is writable.
+    #
     fs.is_writable() {
         local FILE=$1
         [[ -w $FILE ]]
     }
 
     # -x file     Check if we have execute access to file.
+    #
     fs.is_executable() {
         local FILE=$1
         [[ -x $FILE ]]
     }
 
     # -f file     Check if file is an ordinary file (as opposed to a directory, a device special file, etc.)
+    #
     fs.is_file() {
         local FILE=$1
         [[ -f $FILE ]]
     }
 
     # -d file     Check if file is a directory.
+    #
     fs.is_directory() {
         local FILE=$1
         [[ -d $FILE ]]
     }
 
     # -e file     Check if file exists.  Is true even if file is a directory.
+    #
     fs.exists() {
         local FILE=$1
         [[ -e $FILE ]]
     }
 
-    # fs
     # file create operations
+
+    #
+    #
     fs.create_temp_dir() {
     	local PATH=$1
         mkdir -p $1/tmp
@@ -247,7 +257,9 @@ module_fs() {
     }
 
     # fs permission
+
     # common ownership and permission operations
+    #
     fs.change_permission() {
         local TARGET=$2
         local PERMISSION=$1
@@ -290,5 +302,3 @@ module_fs() {
         chown -R www-data:www-data $SERVER_WEB_ROOT
     }
 }
-
-module_fs

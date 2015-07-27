@@ -12,13 +12,13 @@ module_apache() {
 	readonly WEB_ROOT="/var/www/html"
 	readonly SCRIPT_ROOT="/var/www/html/scripts"
 
-    # install apache2 package and dependencies
+    # install apache2 via apt
     #
 	apache.install() {
 		apt-get -y install apache2
 	}
 
-    # install php and extensions
+    # install php and extensions via apt
     #
 	apache.install_php() {
 		apt-get -y install php5 libapache2-mod-php5 php5-mcrypt php5-cli php5-memcache php5-gd php5-curl php5-imagick php5-mysql
@@ -36,7 +36,7 @@ module_apache() {
 		service apache2 restart
 	}
 
-    # enable site
+    # adds conf and enable site
     #
 	apache.add_site() {
 		local $CONF=$1

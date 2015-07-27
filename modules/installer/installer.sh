@@ -37,7 +37,7 @@ module_installer() {
         fs.cp $SCRIPT /usr/local/bin/
     }
 
-    #
+    # compile script to C using Shell Compiler (shc)
     #
     installer.compile() {
         local SCRIPT_NAME=$1

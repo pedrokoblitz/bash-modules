@@ -2,8 +2,6 @@
 
 module_queue() {
 
-
-    # fs
     # queue management
 
     # add item to beggining of queue
