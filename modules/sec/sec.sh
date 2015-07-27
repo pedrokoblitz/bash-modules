@@ -20,8 +20,9 @@ module_sec() {
     #
     sec.create_keyring_dir() {
         local KEYRING_DIR=$PROG_DIR/keyring/$KEYRING/
-        if ! [[ -d $KEYRING_DIR ]]; then
-            fs.mkdir $KEYRING_DIR
+        if ! [[ -d $KEYRING_DIR ]]
+            then
+                fs.mkdir $KEYRING_DIR
         fi 
     }
 
@@ -40,8 +41,9 @@ module_sec() {
     # check keys dir
     #
     sec.check_keyring_dir() {
-        if ! [[ -d $SSH_KEYS_BACKUP_DIR ]]; then
-            fs.mkdir $SSH_KEYS_BACKUP_DIR
+        if ! [[ -d $SSH_KEYS_BACKUP_DIR ]]
+            then
+                fs.mkdir $SSH_KEYS_BACKUP_DIR
         fi
     }
 
