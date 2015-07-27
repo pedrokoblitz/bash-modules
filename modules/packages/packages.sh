@@ -18,12 +18,13 @@ module_data_packages() {
 	}
 
 	packages.install_nlp_packages() {
-		pip install pattern
 		apt-get install python-nltk
+		pip install pattern
 	}
 
 	packages.install_scrapy() {
-		apt-get install libxslt1-dev libxslt1.1 libxml2-dev libxml2 libssl-dev && \
+		apt get install python-dev && \
+			apt-get install libxslt1-dev libxslt1.1 libxml2-dev libxml2 libssl-dev libffi-dev && \
 			apt-get install python-lxml && \
 			apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 627220E7 && \
 			echo 'deb http://archive.scrapy.org/ubuntu scrapy main' | tee /etc/apt/sources.list.d/scrapy.list && \

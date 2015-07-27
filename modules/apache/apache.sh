@@ -12,35 +12,30 @@ module_apache() {
 	readonly WEB_ROOT="/var/www/html"
 	readonly SCRIPT_ROOT="/var/www/html/scripts"
 
-    #
     # install apache2 package and dependencies
     #
 	apache.install() {
 		apt-get -y install apache2
 	}
 
-    #
     # install php and extensions
     #
 	apache.install_php() {
 		apt-get -y install php5 libapache2-mod-php5 php5-mcrypt php5-cli php5-memcache php5-gd php5-curl php5-imagick php5-mysql
 	}
 
-    #
     # creates a file with php server info
     #
 	apache.generate_php_info() {
 		echo "<?php phpinfo();?>" > $APACHE_ROOT/info.php
 	}
 
-    #
     # restarts server
     #
 	apache.restart() {
 		service apache2 restart
 	}
 
-    #
     # enable site
     #
 	apache.add_site() {
@@ -49,10 +44,9 @@ module_apache() {
 		a2ensite $CONF
 	}
 
-    #
     # enable mod_rewrite and mod_deflate
     #
-	apache.add_mods() {
+	apache.enable_default_mods() {
 		a2enmod rewrite
 		a2enmod deflate
 	}

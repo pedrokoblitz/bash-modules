@@ -7,7 +7,6 @@ module_mysql() {
 
     #
     #
-    #
     mysql.install() {
         if [ "$EUID" -ne 0 ]
           then echo "Please run as root"
@@ -23,7 +22,6 @@ module_mysql() {
 
     #
     #
-    #
     mysql.create_user() {
         local HOST=$1
         local USER=$2
@@ -35,13 +33,11 @@ module_mysql() {
 
     #
     #
-    #
     mysql.exec_query() {
         local $QUERY=$1
         mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST -e $QUERY
     }
 
-    #
     #
     #
     mysql.exec_query_in_database() {
@@ -51,7 +47,6 @@ module_mysql() {
         mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST $DB_NAME -e $QUERY
     }
 
-    #
     #
     #
     mysql.exec_query_in_table() {
@@ -64,7 +59,6 @@ module_mysql() {
 
     #
     #
-    #
     mysql.dump() {
         local DB_NAME=$1
         local FILE=$2
@@ -72,7 +66,6 @@ module_mysql() {
         mysqldump --force --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST --databases $DB_NAME > $DB_OUTPUT_DIR"/"$FILE
     }
 
-    #
     #
     #
     mysql.upload() {
@@ -85,7 +78,6 @@ module_mysql() {
 
     #
     #
-    #
     mysql.create_database() {
         local DB_NAME=$1
         local QUERY="CREATE DATABASE $DB_NAME;" 
@@ -93,7 +85,6 @@ module_mysql() {
         mysql.exec_in_server $QUERY
     }
 
-    #
     #
     #
     mysql.remove_database() {
@@ -105,12 +96,10 @@ module_mysql() {
 
     #
     #
-    #
     mysql.remove_temp_files() {
         rm $DB_OUTPUT_DIR/*gz > /dev/null 2>&1
     }
 
-    #
     #
     #
     mysql.dump_database() {
@@ -124,7 +113,6 @@ module_mysql() {
 
     #
     #
-    #
     mysql.dump_all_databases() {
         local DATABASES=$(mysql --user=$DB_USER --password=$DB_PASSWORD -e "SHOW DATABASES;" | tr -d "| " | grep -v Database)
          
@@ -135,7 +123,6 @@ module_mysql() {
         done
     }
 
-    #
     #
     #
     mysql.restore_database() {

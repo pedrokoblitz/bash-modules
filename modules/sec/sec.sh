@@ -5,8 +5,7 @@ module_sec() {
     # security
     # ssh keys generation, backup and restore
     #--> ssh-keyscan <Server_Hostname_or_ip_address> >> ~/.ssh/known_hosts
-    
-    #
+
     # create keys
     #
     sec.generate_key_pair() {
@@ -15,7 +14,6 @@ module_sec() {
         cat keypair >> $USER_HOME/.ssh/authorized_keys
     }
 
-    #
     # create keys dir
     #
     sec.create_keyring_dir() {
@@ -26,7 +24,6 @@ module_sec() {
         fi 
     }
 
-    #
     # create keys with email as username and password
     #
     sec.generate_protected_key_pair() {
@@ -34,20 +31,18 @@ module_sec() {
         local $PASSWORD=$2
         local $KEYRING=$1
         ssh-keygen -t rsa -C $EMAIL
-        backup_keys $KEYRING
+        sec.backup_keys $KEYRING
     }
 
-    #
     # check keys dir
     #
     sec.check_keyring_dir() {
         if ! [[ -d $SSH_KEYS_BACKUP_DIR ]]
             then
-                fs.mkdir $SSH_KEYS_BACKUP_DIR
+                mkdir $SSH_KEYS_BACKUP_DIR
         fi
     }
 
-    #
     # save copies
     #
     sec.backup_keys() {
@@ -55,7 +50,6 @@ module_sec() {
         cp $SSH_KEYS_DIR/* $SSH_KEYS_BACKUP_DIR/$KEYRING/
     }
 
-    #
     # restore copies
     #
     sec.restore_keys() {
@@ -63,7 +57,6 @@ module_sec() {
         cp $SSH_KEYS_BACKUP_DIR/$KEYRING/* $SSH_KEYS_DIR/
     }
 
-    #
     # copy key to remove server
     #
     sec.enable_key_in_server() {
@@ -72,14 +65,12 @@ module_sec() {
         ssh-copy-id $USERNAME@$SERVER_ADDRESS
     }
 
-    #
     # allow root ssh login
     #
     sec.enable_root_ssh() {
         
     }
 
-    #
     # forbid root ssh login
     #
     sec.disable_root_ssh() {

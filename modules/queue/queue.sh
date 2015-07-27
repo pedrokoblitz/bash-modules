@@ -6,7 +6,6 @@ module_queue() {
     # fs
     # queue management
 
-    #
     # add item to beggining of queue
     #
     queue.add_first() {
@@ -15,7 +14,6 @@ module_queue() {
         fs.prepend_line_to_file $QUEUE $MESSAGE
     }
 
-    #
     # add item to end of queue
     #
     queue.add_last() {
@@ -24,7 +22,6 @@ module_queue() {
         fs.append_line_to_file $QUEUE $MESSAGE
     }
 
-    #
     # get first item
     #
     queue.get_first() {
@@ -32,7 +29,6 @@ module_queue() {
         text_get_first_line_from_file $QUEUE
     }
 
-    #
     # get last item
     #
     queue.get_last() {
@@ -40,7 +36,6 @@ module_queue() {
         text_get_last_line_from_file $QUEUE
     }
 
-    #
     # get item for queue type
     #
     queue.get() {
@@ -57,7 +52,6 @@ module_queue() {
         fi
     }
 
-    #
     # remove first item 
     #
     queue.remove_first() {
@@ -65,7 +59,6 @@ module_queue() {
         tail -n +2 QUEUE
     }
 
-    #
     # remove last item
     #
     queue.remove_last() {
@@ -73,7 +66,6 @@ module_queue() {
         truncate -s -"$(queue.get_last $QUEUE | wc -c)" $QUEUE
     }
 
-    #
     # clear queue
     #
     queue.clear() {
@@ -81,7 +73,6 @@ module_queue() {
         echo /dev/null > $QUEUE
     }
 
-    #
     # get queue length
     #
     queue.count() {
