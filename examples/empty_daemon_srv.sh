@@ -2,30 +2,52 @@
 
 #
 #
-#
-conf() {
-    local BASE='./conf/tresr.conf'
-    if [[ -f $BASE ]]; then
-    	source $BASE
-    fi
-}
-conf
+daemon_is_installed() {
 
-#
-#
-#
-register() {
-	update-rc.d $PROG_NAME defaults
 }
 
 #
 #
-#
-remove() {
-	update-rc.d -f $PROG_NAME remove
+daemon_create_dir() {
+
 }
 
 #
+#
+daemon_install() {
+	if ! [[ daemon_is_installed ]]; then
+		daemon_create_dir
+		daemon_create_default_conf
+		daemon_register
+	fi
+}
+
+#
+#
+daemon_create_default_conf() {
+
+}
+
+#
+#
+daemon_register() {
+	local PROG=$1
+	update-rc.d $PROG defaults
+}
+
+#
+#
+daemon_unregister() {
+	local PROG=$1
+	update-rc.d -f $PROG remove
+}
+
+#
+#
+daemon_load_default_conf() {
+
+}
+
 #
 #
 start() {
@@ -34,18 +56,18 @@ start() {
 
 #
 #
-#
 restart() {
 	
 }
 
 #
 #
-#
 stop() {
 	
 }
 
+#
+#
 reload() {
 	
 }
@@ -68,3 +90,5 @@ main() {
 		reload
 	fi	
 }
+
+main $@
