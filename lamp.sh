@@ -9,11 +9,40 @@ module_apache
 source modules/mysql/mysql.sh
 module_mysql
 
+lamp.is_apache_installed() {
+    which apache
+}
+
+lamp.is_php_installed() {
+    which php
+}
+
+lamp.is_mysql_installed() {
+    which mysql
+}
+
+lamp.are_all_installed() {
+    which mysql && which apache2 && which php
+}
+
 lamp.install() {
-    mysql.install
+    if ! lamp.is_mysql_installed
+        then
+            mysql.install
+    fi
+
     mysql.create_user "localhost" "pedro" "abcdi2ea"
-    apache.install_apache
-    apache.install_php
+
+    if ! lamp.is_apache_installed
+        then
+            apache.install
+    fi
+
+    if ! lamp.is_php_installed
+        then
+            apache.install_php
+    fi
+    
     apache.restart
 }
 
@@ -22,7 +51,7 @@ main() {
 
     if [ "$MODO" == "install" ]
         then
-            if which mysql && which apache2 && which php
+            if lamp.are_all_installed
                 then
                     echo "Already installed" 
                     exit 0
