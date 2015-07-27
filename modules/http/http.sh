@@ -5,7 +5,6 @@ module_http() {
     # http operations
     # get & post / rest / downloads
 
-    # 
     # echo url output to stdout
     #
     http.echo() {
@@ -13,7 +12,6 @@ module_http() {
         wget -o /dev/null -O $URL # ou wget -qO- http://example.com
     }
 
-    #
     # download url to file
     #
     http.download() {
@@ -22,7 +20,6 @@ module_http() {
         wget -O $NAME $URL
     }
 
-    #
     # get request
     #
     http.get() {
@@ -30,7 +27,6 @@ module_http() {
         curl -L --request GET $URL
     }
 
-    #
     # post request
     #
     http.post() {
@@ -39,7 +35,6 @@ module_http() {
         curl --request POST $URL -d $DATA
     }
 
-    #
     # get request in json
     #
     http.rest_get() {
@@ -47,7 +42,6 @@ module_http() {
         curl -i -H "Accept: application/json" -X GET $URL
     }
 
-    #
     # post request in json
     #
     http.rest_post() {
@@ -56,7 +50,6 @@ module_http() {
         curl -i -H "Accept: application/json" -X POST -d $DATA $URL
     }
 
-    #
     # put request in json
     #
     http.rest_put() {
@@ -65,7 +58,6 @@ module_http() {
         curl -i -H "Accept: application/json" -X PUT -d $DATA $URL
     }
 
-    #
     # delete request in json
     #
     http.rest_delete() {

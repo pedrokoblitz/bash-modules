@@ -7,6 +7,14 @@ readonly SOURCE_DB="SECULT_Portal"
 readonly TARGET_DB=""
 readonly DUMP_FILE="~/secult_db.sql"
 
+usage() {
+	cat <<- EOF
+		multi line text goes here...
+		multi line text goes here...
+		multi line text goes here...
+	EOF	
+}
+
 dump_db_data() {
 	mysqldump -u$DB_USER -p$DB_PASSWORD -h$DB_HOST --default-character-set=latin1 $SOURCE_DB > $DUMP_FILE
 }

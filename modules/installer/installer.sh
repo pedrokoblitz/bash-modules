@@ -2,7 +2,6 @@
 
 module_installer() {
 
-    #
     # this module needs root/sudoer permission
     #
     if [ "$EUID" -ne 0 ]
@@ -10,21 +9,18 @@ module_installer() {
       exit
     fi
 
-    #
     # create user dir for script if it does not exist
     #
     installer.create_dir() {
         fs.create_dir_if_needed $PROG_DIR
     }
 
-    #
     # create temporary dir for script if it does not exist
     #
     installer.create_temp_dir() {
         fs.create_dir_if_needed $PROG_TEMP_DIR
     }
 
-    #
     # creates user and adds it to sudoers list
     #
     installer.add_user() {
@@ -33,7 +29,6 @@ module_installer() {
         gpasswd -a $USERNAME sudo
     }
 
-    #
     # make script executable and copy to /usr/local/bin
     #
     installer.cp_to_bin() {
@@ -42,10 +37,10 @@ module_installer() {
         fs.cp $SCRIPT /usr/local/bin/
     }
 
+    #
+    #
     installer.compile() {
         local SCRIPT_NAME=$1
-        shc -r -f $SCRIPT_NAME.sh && chmod +x $SCRIPT_NAME.sh.x && mv $SCRIPT_NAME.sh.x $SCRIPT_NAME && rm $SCRIPT_NAME.sh.x.c
+        shc -r -f ${SCRIPT_NAME}.sh && chmod +x ${SCRIPT_NAME}.sh.x && mv ${SCRIPT_NAME}.sh.x $SCRIPT_NAME && rm ${SCRIPT_NAME}.sh.x.c
     }
 }
-
-module_installer

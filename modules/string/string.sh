@@ -4,7 +4,6 @@ module_string() {
 
     #
     #
-    #
     string.column() {
         local column=$1
         local input
@@ -14,7 +13,6 @@ module_string() {
             | awk "{print \$$column}"
     }
 
-    #
     #
     #
     string.split_by() {
@@ -29,7 +27,6 @@ module_string() {
 
     #
     #
-    #
     string.csv_column() {
         local column=$1
         IFS= read -r
@@ -39,14 +36,12 @@ module_string() {
 
     #
     #
-    #
     string.colons_to_spaces() {
         IFS= read -r
         echo "$REPLY" \
             | sed 's/:/ /g'
     }
 
-    #
     #
     #
     string.eol_to_spaces() {
@@ -61,14 +56,12 @@ module_string() {
 
     #
     #
-    #
     string.delete_spaces() {
         IFS= read -r
         echo "$REPLY" \
             | sed 's/ //g'
     }
 
-    #
     #
     #
     string.truncate_duplicate_spaces() {
@@ -79,14 +72,12 @@ module_string() {
 
     #
     #
-    #
     string.apostrophes_to_spaces() {
         IFS= read -r
         echo "$REPLY" \
             | sed s/"'"/" "/g
     }
 
-    #
     #
     #
     string.commas_to_spaces() {
@@ -97,14 +88,12 @@ module_string() {
 
     #
     #
-    #
     string.tabs_to_spaces() {
         IFS= read -r
         echo "$REPLY" \
             | sed 's/[\t]/ /g'
     }
 
-    #
     #
     #
     string.delete_edge_spaces() {
@@ -114,7 +103,6 @@ module_string() {
             | sed 's/[ ][ ]*$//'
     }
 
-    #
     #
     #
     string.string_inside_quotes() {
@@ -132,13 +120,11 @@ module_string() {
 
     #
     #
-    #
     string.date_str() {
         local delimiter=${1:-$(string.default_date_delimiter)}
         date +%Y${delimiter}%m${delimiter}%d
     }
 
-    #
     #
     #
     string.time_str() {
@@ -148,13 +134,11 @@ module_string() {
 
     #
     #
-    #
     string.time_with_seconds_str() {
         local delimiter=${1:-$(string.default_date_delimiter)}
         date +%H${delimiter}%M${delimiter}%S
     }
 
-    #
     #
     #
     string.date_time_str() {
@@ -163,7 +147,6 @@ module_string() {
         echo $(date_str $delimiter)${hour_delimiter}$(time_str $delimiter)
     }
 
-    #
     #
     #
     string.date_time_with_seconds_str() {

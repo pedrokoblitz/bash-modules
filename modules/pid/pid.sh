@@ -4,28 +4,24 @@ module_pid() {
 
     readonly PID_STORE=$USER_HOME/.${PROG_DIR}/pid/${PROG_$BASHPID}.pid
 
-    #
     # sleep 5 seconds
     #
     pid.delay() {
         sleep 5
     }
 
-    #
     # prints pid
     #
     pid.self() {
         echo $$
     }
 
-    #
     # prints pid from last run
     #
     pid.last_run() {
         echo $!
     }
 
-    #
     # get pid
     #
     pid.get() {
@@ -33,7 +29,6 @@ module_pid() {
         cat $FILE
     }
 
-    #
     # kill pid process
     #
     pid.kill_proc() {
@@ -41,42 +36,36 @@ module_pid() {
         kill -9 $PID_STORE
     }
 
-    #
     # kill this process
     #
     pid.kill_self() {
         pid.kill_proc $(pid.self)
     }
 
-    #
     # kill last process
     #
     pid.kill_last() {
         pid.kill_proc $(pid.last_run)
     }
 
-    #
     # store pid in file
     #
     pid.store() {
         echo $$ > $PID_STORE
     }
 
-    #
     # store last pid in file
     #
     pid.store_last() {
         echo $! > $PID_STORE
     }
 
-    #
     # clear file
     #
     pid.clear() {
         echo /dev/null > $PID_FILE
     }
 
-    #
     # generate lockfile
     #
     pid.lock() {
@@ -84,7 +73,6 @@ module_pid() {
         lockfile -r 0 $FILE
     }
 
-    #
     # remove lockfile
     #
     pid.unlock() {
@@ -93,5 +81,3 @@ module_pid() {
         fi
     }
 }
-
-module_pid

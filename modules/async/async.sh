@@ -2,7 +2,6 @@
 
 module_async() {
 
-    #
     # run script on background with nohup
     #
     async.run_on_background() {
@@ -12,7 +11,6 @@ module_async() {
         nohup $SCRIPT > /dev/null 2>&1 &
     }
 
-    #
     # loop in background using subshells
     #
     async.spawn_via_loop() {
@@ -21,13 +19,13 @@ module_async() {
         # "spawning $N processes"
         for i in $(seq 1 $N) ;
         do
-            (   # subshell/closure 
+            (   
+                # subshell/closure 
                 async.run_on_background $SCRIPT
             )
         done
     }
 
-    #
     # loop using parallel
     #
     async.spawn_via_parallel() {
@@ -35,17 +33,18 @@ module_async() {
         local N=$2
         # echo "Spawning 100 processes"
         # Without -j0 it will spawn one process per CPU.
-        # echo $PARAMS_LIST | parallel -j0 $SCRIPT  ::: { 1..$N }
+        # echo $PARAMS_LIST | \
+        #   parallel -j0 $SCRIPT  ::: { 1..$N }
         parallel -j0 $SCRIPT ::: $(seq 1 $N)
     }
 
-    # 
     # loop using xargs
     #
     async.spawn_via_xargs() {
         local SCRIPT=$1
         local N=$2
         local PARAM_LIST=$3
-        echo $PARAM_LIST | xargs -n 1 -P $N $SCRIPT -q
+        echo $PARAM_LIST | \
+            xargs -n 1 -P $N $SCRIPT -q
     }
 }

@@ -50,5 +50,4 @@ module_apache() {
 		a2enmod rewrite
 		a2enmod deflate
 	}
-
 }

@@ -6,14 +6,12 @@ module_io() {
     # temp file io control
     declare IO_OUTPUT=$(fs.mktemp)
 
-    #
     # returns null
     #
     io.null() {
         cat /dev/null
     }
 
-    #
     # returns output
     #
     io.output() {
@@ -21,14 +19,12 @@ module_io() {
         cat $OUTPUT
     }
 
-    #
     # returns escaped output
     #    
 	io.output_escape() {
         printf $(io.output $1) 
     }
 
-    #
     # write/append to output
     #    
 	io.write() {
@@ -42,7 +38,6 @@ module_io() {
         cat $INPUT >> $OUTPUT
     }
 
-    #
     # open file and write to output
     #    
 	io.open() {
@@ -52,7 +47,6 @@ module_io() {
         cat $SAVED_FILE > $OUTPUT
     }
 
-    #
     # save file
     #    
 	io.save() {
@@ -61,7 +55,6 @@ module_io() {
         io.output_escape > $SAVED_FILE
     }
 
-    #
     # clear file
     #    
 	io.clear() {
@@ -69,7 +62,6 @@ module_io() {
         io.null > $OUTPUT
     }
 
-    #
     #
     #    
 	io.save_and_clear() {
@@ -81,13 +73,13 @@ module_io() {
     #    
 	io.remove_temp_file() {
         local OUTPUT=$1
-        rm $OUTPUT
+        rm -f $OUTPUT
     }
 
     #
     #    
 	io.remove_temp_files() {
-        rm $PROG_DIR/tmp/*
+        rm -f $PROG_DIR/tmp/*
     }
 
     # Close input file descriptor n. --> n<&-
@@ -204,5 +196,3 @@ module_io() {
 
     # command < input-file > output-file
 }
-
-module_io

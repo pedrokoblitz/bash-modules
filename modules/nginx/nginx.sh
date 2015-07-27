@@ -12,31 +12,28 @@ module_nginx() {
 	readonly WEB_ROOT="/usr/share/nginx/www"
 	readonly SCRIPT_ROOT="/var/www/html/scripts"
 
-    #
     # install
     #
 	nginx.install_nginx() {
-		echo "deb http://ppa.launchpad.net/nginx/stable/ubuntu $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/nginx-stable.list
+		echo "deb http://ppa.launchpad.net/nginx/stable/ubuntu $(lsb_release -sc) main" | \
+			tee /etc/apt/sources.list.d/nginx-stable.list
 		apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C
 		apt-get update
 		apt-get install nginx
 	}
 
-    #
     # start
     #
 	nginx.start_nginx() {
 		service nginx start
 	}
 
-    #
     # restart
     #
 	nginx.restart_nginx() {
 		service nginx restart
 	}
 
-    #
     # install php and fix php.ini
     #
 	nginx.install_php() {
@@ -44,7 +41,6 @@ module_nginx() {
 		sed -i s/cgi\.fix_pathinfo=1/cgi\.fix_pathinfo=1/g /etc/php5/apache2/php.ini
 	}
 
-    #
     # configure fpm listening
     #
 	nginx.configure_fpm() {
@@ -52,18 +48,15 @@ module_nginx() {
 		service php5-fpm restart
 	}
 
-    #
     # configure default site
     #
 	nginx.configure_nginx() {
 		cat $SCRIPT_ROOT/nginx/config > $NGINX_SITES/default
 	}
 
-    #
     # create file with php server info
     #
 	nginx.generate_php_info() {
 		echo "<?php phpinfo();?>" > $WEB_ROOT/info.php
 	}
 }
-

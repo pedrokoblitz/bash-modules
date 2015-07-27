@@ -5,6 +5,14 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+usage() {
+	cat <<- EOF
+		multi line text goes here...
+		multi line text goes here...
+		multi line text goes here...
+	EOF	
+}
+
 is_dir() {
     local DIR=$1
     [[ -d $DIR ]]

@@ -5,12 +5,22 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-#source ./utils/loader.sh
 source ./conf/modules.conf
 
 source ./modules/fs/fs.sh
+module_fs
+
 source ./modules/installer/installer.sh
-source ./modules/varcheck/varcheck.sh
+module_installer
+
+usage() {
+	cat <<- EOF
+		multi line text goes here...
+		multi line text goes here...
+		multi line text goes here...
+	EOF	
+}
+
 
 #
 #

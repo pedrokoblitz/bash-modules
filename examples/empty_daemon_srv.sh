@@ -1,5 +1,13 @@
 #!/bin/bash
 
+usage() {
+	cat <<- EOF
+		multi line text goes here...
+		multi line text goes here...
+		multi line text goes here...
+	EOF	
+}
+
 #
 #
 daemon_is_installed() {

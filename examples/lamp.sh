@@ -9,6 +9,14 @@ module_apache
 source modules/mysql/mysql.sh
 module_mysql
 
+lamp.usage() {
+    cat <<- EOF
+        multi line text goes here...
+        multi line text goes here...
+        multi line text goes here...
+    EOF 
+}
+
 #
 #
 lamp.is_apache_installed() {
