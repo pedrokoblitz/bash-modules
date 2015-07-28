@@ -12,7 +12,7 @@ usage() {
 }
 
 download_all() {
-	local $REPOS_LIST=$1
+	local REPOS_LIST=$1
 	cd $PROJECTS_FOLDER
 	
 	while read REPO

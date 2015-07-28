@@ -10,7 +10,6 @@ module_apache() {
 	readonly APACHE_SITES="/etc/apache2/sites-avaiable"
 	readonly APACHE_MODS="/etc/apache2/mods-avaiable"
 	readonly WEB_ROOT="/var/www/html"
-	readonly SCRIPT_ROOT="/var/www/html/scripts"
 
     # install apache2 via apt
     #
@@ -27,7 +26,7 @@ module_apache() {
     # creates a file with php server info
     #
 	apache.generate_php_info() {
-		echo "<?php phpinfo();?>" > $APACHE_ROOT/info.php
+		echo "<?php phpinfo();?>" > $WEB_ROOT/info.php
 	}
 
     # restarts server
@@ -36,11 +35,17 @@ module_apache() {
 		service apache2 restart
 	}
 
+    # recursevely change webroot ownership to apache default user
+    # (www-data)
+    apache.own_webroot() {
+        chown -R www-data:www-data $WEB_ROOT
+    }
+
     # adds conf and enable site
     #
 	apache.add_site() {
-		local $CONF=$1
-		cp $SCRIPT_ROOT/sites/$CONF $APACHE_SITES/$CONF.conf
+		local CONF=$1
+		cp ${PROG_DIR}/${CONF} ${APACHE_SITES}/${CONF}.conf
 		a2ensite $CONF
 	}
 

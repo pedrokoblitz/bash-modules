@@ -52,7 +52,7 @@ module_mysql() {
     # drops and recreates db
     #
     mysql.refresh_db() {
-        local $DB_NAME=$1
+        local DB_NAME=$1
         mysql.remove_database $DB_NAME
         mysql.create_database $DB_NAME
     }
@@ -60,8 +60,8 @@ module_mysql() {
     # executes query in database
     #
     mysql.exec() {
-        local $DB_NAME=$1
-        local $QUERY=$2
+        local DB_NAME=$1
+        local QUERY=$2
         mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST $DB_NAME -e $QUERY
     }
 

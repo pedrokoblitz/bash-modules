@@ -2,10 +2,6 @@
 
 module_io() {
 
-    # fs io
-    # temp file io control
-    declare IO_OUTPUT=$(fs.mktemp)
-
     # returns null
     #
     io.null() {
@@ -28,12 +24,11 @@ module_io() {
     # write/append to output
     #    
 	io.write() {
-        local INPUT=""
         local OUTPUT=$2
-        if [[ fs.is_empty $INPUT ]]; then
-            INPUT=$1
+        if [[ -z $INPUT ]]; then
+            local INPUT=$1
         else
-            INPUT=$OUTPUT"\n"$1
+            local INPUT=${OUTPUT}"\n"${1}
         fi
         cat $INPUT >> $OUTPUT
     }
@@ -42,7 +37,7 @@ module_io() {
     #    
 	io.open() {
         local NAME=$1
-        local SAVED_FILE=$PROG_DIR$DIR/$NAME.$PROG_EXTENSION
+        local SAVED_FILE=${PROG_DIR}/${NAME}
         local OUTPUT=$3
         cat $SAVED_FILE > $OUTPUT
     }
@@ -51,7 +46,7 @@ module_io() {
     #    
 	io.save() {
         local NAME=$1
-        local SAVED_FILE=${PROG_DIR}${DIR}/${NAME}.${PROG_EXTENSION}
+        local SAVED_FILE=${PROG_DIR}/${NAME}
         io.output_escape > $SAVED_FILE
     }
 
@@ -93,8 +88,7 @@ module_io() {
     # exec 5>/tmp/foo       # open /tmp/foo for writing, on fd 5
     # exec 6</tmp/bar       # open /tmp/bar for reading, on fd 6
     # cat <&6 |             # call cat, with its standard input connected to
-    #    
-	                   # what is currently fd 6, i.e. /tmp/bar
+                            # what is currently fd 6, i.e. /tmp/bar
     # while read a; do      # 
     #   echo $a >&5         # write to fd 5, i.e. /tmp/foo
     # done                  # 
@@ -152,7 +146,6 @@ module_io() {
 
     # for reading --> exec $N < file
     #
-    #
     io.write_line() {
        local N=$1
        local LINE=$2
@@ -193,6 +186,4 @@ module_io() {
 	io.stderr_to_stdout() {
       exec 2>&1  
     }
-
-    # command < input-file > output-file
 }

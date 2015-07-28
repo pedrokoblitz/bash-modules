@@ -31,7 +31,7 @@ module_async() {
     async.spawn_via_parallel() {
         local SCRIPT=$1
         local N=$2
-        # echo "Spawning 100 processes"
+        # spawning $N processes
         # Without -j0 it will spawn one process per CPU.
         # echo $PARAMS_LIST | \
         #   parallel -j0 $SCRIPT  ::: { 1..$N }

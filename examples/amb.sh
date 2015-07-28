@@ -1,11 +1,12 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
+source ./conf/run_as_root.conf
 source ./conf/modules.conf
+
+readonly PHP_INI_FILE=/etc/php5/apache2/php.ini
+readonly HOSTS_FILE=/etc/hosts
+readonly PHP_INI_BAK=$PROG_DIR/php.ini.bak
+readonly HOSTS_BAK=$PROG_DIR/hosts.bak
 
 source ./modules/fs/fs.sh
 module_fs
@@ -24,187 +25,118 @@ usage() {
 
 #
 #
-module_amb() {
+hosts_to_dev() {
+	hosts_backup
 
-	#
-	#
-	amb.hosts_para_dev() {
-		amb.hosts_backup
+	cp $PROG_DIR/hosts.dev $HOSTS_FILE
 
-		local FILE=/etc/hosts
-		sudo cp /home/pedro/.amb/dev $FILE
-
-		if [ fs.is_empty $FILE ]; then
-			amb.hosts_restore
-		fi
-	}
-
-	#
-	#
-	amb.hosts_para_prod() {
-		amb.hosts_backup
-
-		local FILE=/etc/hosts
-		sudo cp /home/pedro/.amb/prod $FILE
-
-		if [ fs.is_empty $FILE ]; then
-			amb.hosts_restore
-		fi
-	}
-
-	#
-	#
-	amb.php_err_on() {
-		amb.php_ini_backup
-
-		local FILE=/etc/php5/apache2/php.ini
-		fs.replace_in_file $FILE "display_errors = Off" "display_errors = On"
-
-		if [ fs.is_empty $FILE ]; then
-			amb.php_ini_restore
-		fi
-
-		service apache2 restart
-	}
-
-	#
-	#
-	amb.php_err_off() {
-		amb.php_ini_backup
-
-		local FILE=/etc/php5/apache2/php.ini
-		fs.replace_in_file $FILE "display_errors = On" "display_errors = Off"
-
-		if [ fs.is_empty $FILE ]; then
-			amb.php_ini_restore
-		fi
-		
-		service apache2 restart
-	}
-
-	# copia php.ini para pasta do script
-	#
-	amb.php_ini_backup() {
-		local FILE=/etc/php5/apache2/php.ini
-		cp $FILE $PROG_DIR/php.ini.bak
-	}
-
-	# restaura php.ini
-	#
-	amb.php_ini_restore() {
-		local FILE=/etc/php5/apache2/php.ini
-		cp $PROG_DIR/php.ini.bak $FILE
-	}
-
-	# copia /etc/hosts para pasta do script
-	#
-	amb.hosts_backup() {
-		local FILE=/etc/hosts
-		cp $FILE $PROG_DIR/hosts.bak
-	}
-
-	# restaura /etc/hosts
-	#
-	amb.hosts_restore() {
-		local FILE=/etc/hosts
-		cp $PROG_DIR/hosts.bak $FILE
-	}
-
-	# comando: host
-	#
-	amb.hosts() {
-		local MODO=$1
-
-		if [ "$MODO" == "prod" ]
-			then
-				amb.hosts_para_prod
-		elif [ "$MODO" == "dev" ]
-			then
-				amb.hosts_para_dev
-		fiz
-	}
-
-	# comando: php
-	#
-	amb.php() {
-		local MODO=$1
-
-		if [ "$MODO" == "erroff" ]
-			then
-				amb.php_err_off
-		elif [ "$MODO" == "erron" ]
-			then
-				amb.php_err_on
-		fi
-	}
+	if [ fs.is_empty $FILE ]; then
+		hosts_restore
+	fi
 }
-
-module_amb
 
 #
 #
-main() {
+hosts_to_prod() {
+	hosts_backup
 
-	local COMANDO=amb.$1
-	local MODO=$2
+	cp $PROG_DIR/hosts.prod $HOSTS_FILE
 
-	installer.create_dir
-	installer.create_temp_dir
-
-	amb.$COMANDO $MODO
+	if [ fs.is_empty $HOSTS_FILE ]; then
+		hosts_restore
+	fi
 }
 
-
-main $1 $2
-
-
-# --------------------
-
-
-#!/bin/bash
-
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
-para_dev() {
-	sudo cp /home/pedro/.meushosts/dev /etc/hosts
-}
-
-para_prod() {
-	sudo cp /home/pedro/.meushosts/prod /etc/hosts
-}
-
+#
+#
 php_err_on() {
-	sed -i s/display_errors\ =\ Off/display_errors\ =\ On/g /etc/php5/apache2/php.ini
+	php_ini_backup
+
+	sed -i 's/display_errors\ =\ On/display_errors\ =\ Off/g' $PHP_INI_FILE
+
+	if [ fs.is_empty $PHP_INI_FILE ]; then
+		php_ini_restore
+	fi
+
 	service apache2 restart
 }
 
+#
+#
 php_err_off() {
-	sed -i s/display_errors\ =\ On/display_errors\ =\ Off/g /etc/php5/apache2/php.ini
+	php_ini_backup
+
+	sed -i 's/display_errors\ =\ On/display_errors\ =\ Off/g' $PHP_INI_FILE
+
+	if [ fs.is_empty $PHP_INI_FILE ]; then
+		php_ini_restore
+	fi
+	
 	service apache2 restart
 }
 
-main() {
-	local modo=$1
+# copia php.ini para pasta do script
+#
+php_ini_backup() {
+	cp $PHP_INI_FILE $PHP_INI_BAK
+}
 
-	if [ "$modo" == "prod" ]
+# restaura php.ini
+#
+php_ini_restore() {
+	cp $PHP_INI_BAK $PHP_INI_FILE
+}
+
+# copia /etc/hosts para pasta do script
+#
+hosts_backup() {
+	cp $HOSTS_FILE $HOSTS_BAK
+}
+
+# restaura /etc/hosts
+#
+hosts_restore() {
+	cp $HOSTS_BAK $HOSTS_FILE
+}
+
+# comando: host
+#
+hosts() {
+	local MODO=$1
+
+	if [ "$MODO" == "prod" ]
 		then
-			para_prod
-
-	elif [ "$modo" == "dev" ]
+			hosts_to_prod
+	elif [ "$MODO" == "dev" ]
 		then
-			para_dev
+			hosts_to_dev
+	fiz
+}
 
-	elif [ "$modo" == "erroff" ]
+# comando: php
+#
+php() {
+	local MODO=$1
+
+	if [ "$MODO" == "erroff" ]
 		then
 			php_err_off
-
-	elif [ "$modo" == "erron" ]
+	elif [ "$MODO" == "erron" ]
 		then
 			php_err_on
 	fi
 }
 
-main $1
+#
+#
+main() {
+
+	local COMANDO=$1
+	local MODO=$2
+
+	$COMANDO $MODO
+}
+
+
+main $1 $2
+

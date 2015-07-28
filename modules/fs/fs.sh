@@ -6,14 +6,14 @@ module_fs() {
 
     declare SERVER_WEB_ROOT=/var/www/
 
-    #
+    # remove directory
     #
     fs.rm_dir() {
         local PATH=$1
         rm -rf $PATH
     }
 
-    #
+    # recursevely remove files of some pattern
     #
     fs.rm_recursive() {
         local PATH=$1
@@ -21,7 +21,7 @@ module_fs() {
         find $PATH -name $PATTERN | xargs rm
     }
 
-    #
+    # recursevely copy files
     #
     fs.cp_recursive() {
         local SOURCE=$1
@@ -31,14 +31,14 @@ module_fs() {
 
     # check file state
 
-    #
+    # check if empty
     #
     fs.is_empty() {
         local FILE=$1
         [[ -z $FILE ]]
     }
 
-    #
+    # check if not empty
     #
     fs.is_not_empty() {
         local FILE=$1
@@ -89,30 +89,7 @@ module_fs() {
 
     # file create operations
 
-    #
-    #
-    fs.create_temp_dir() {
-    	local PATH=$1
-        mkdir -p $1/tmp
-    }
-
-    #
-    #
-    fs.delete_temp_dir() {
-        local PATH=$1
-        rm -rf $1/tmp \
-            || rm -rf ./tmp \
-            || { echo "Failed to remove temp dir"; exit 1; }
-    }
-
-    #
-    #
-    fs.create_dir_tree() {
-        local PATH=$1
-        mkdir -p $1
-    }
-
-    #
+    # create dir if it doesnt exists
     #
     fs.create_dir_if_needed() {
         local DIR=$1
@@ -121,90 +98,64 @@ module_fs() {
         readlink -m $DIR
     }
 
+    # create temp file
     #
-    #
-    fs.create_file() {
-        local PATH=$1
-        local FILE=$2    
-        touch $PATH$FILE
-    }
-
-    #
-    #
-    fs.create_app_file() {
-        local PATH=$PROG_DIR
-        local FILE=$1    
-        fs.create_file $PATH $FILE
-    }
-
-    #
-    #
-    fs.create_temp_file() {
+    fs.create_tmp_file() {
         mktemp /tmp/$PROG.XXXXXXXXXX.tmp \
             || { echo "Failed to create temp file"; exit 1; }
     }
 
-    # fs 
     # file/string manipulation
-    fs.prepend_line_to_file()
+
+    # add line to begining of file
+    # 
+    fs.prepend_line()
     {
         local FILE=$1
         local LINE=$2
         echo $LINE | cat - $FILE > temp && mv temp $FILE
     }
 
+    # add line to end of file
     #
-    #
-    fs.append_line_to_file() {
+    fs.append_line() {
         local FILE=$1; shift
         local LINE=$@
         echo $LINE >> $FILE
     }
 
-    #
-    #
-    fs.delete_line_from_file() {
+    fs.delete_line() {
         local FILE=$1; shift
         local LINE=$@
         sed -i "/^$LINE/d" $FILE
     }
 
-    #
-    #
-    fs.get_last_line_from_file() {
+    fs.get_last_line() {
         local FILE=$1
         tail -n 1 $FILE
     }
 
-    #
-    #
-    fs.get_first_line_from_file() {
+    fs.get_first_line() {
         local FILE=$1
         head -1 $FILE
     }
 
-    #
-    #
-    fs.delete_first_line_from_file() {
+    fs.delete_first_line() {
         local FILE=$1
         tail -n +2 $FILE
     }
 
-    #
-    #
-    fs.delete_first_line_from_file_if_empty() {
+    fs.delete_first_line() {
         local FILE=$1
         sed "1{/^$/d}" < $FILE
     }
 
-    #
-    #
-    fs.delete_last_line_from_file() {
+    fs.delete_last_line() {
         local FILE=$1
         truncate -s -"$(fs.get_last_line_from_file $FILE | wc -c)" $FILE
     }
 
-    #
+    # check if line is in file
     #
     fs.line_in_file() {
         local FILE=$1; shift
@@ -212,93 +163,72 @@ module_fs() {
         grep -q "^$LINE$" $FILE
     }
 
+    # add if it not exists
     #
-    #
-    fs.add_line_to_file_if_not_exist() {
+    fs.add_line_to_file_if_needed() {
         local FILE=$1; shift
         local LINE=$@
         line_in_file $FILE $LINE \
             || add_line_to_file $FILE $LINE
     }
 
-    #
+    # convert all newlines to spaces
     #
     fs.newline_to_space() {
         local FILE=$1
         sed -i ':a;N;$!ba;s/\n/ /g' $FILE
     }
 
-    #
-    #
     fs.remove_empty_lines() {
         local FILE=$1
         sed -i '/^\s*$/d' $FILE
     }
 
-    #
-    #
     fs.trim() {
         local FILE=$1
         sed -i 's/[ \t]*$//' $FILE
     }
 
-    #
-    #
     fs.remove_all_whitespace() {
         local FILE=$1
         cat $FILE | tr -d "[:space:]" > $FILE
     }
 
-    #
-    #
     fs.count_lines() {
         local FILE=$1
         wc -l < $FILE
     }
 
-    # fs permission
-
     # common ownership and permission operations
-    #
+
     fs.change_permission() {
-        local TARGET=$2
         local PERMISSION=$1
+        local TARGET=$2
 
         if [[ -d $TARGET ]]; then
             chmod -R $PERMISSION $TARGET
-        elif [[ -d $TARGET ]]; then
+        elif [[ -f $TARGET ]]; then
             chmod $PERMISSION $TARGET
         fi
     }
 
-    #
-    #
     fs.executable_permission() {
         local TARGET=$1
-        local PERMISSION=+x
-        fs.change_permission $PERMISSION $TARGET
+        chmod +x $TARGET
     }
 
     #
     #
     fs.readable_permission() {
         local TARGET=$1
-        local PERMISSION=755
-        fs.change_permission $PERMISSION $TARGET
+        fs.change_permission 755 $TARGET
     }
 
     #
     #
     fs.group_own() {
+        local OWNERSHIP=$1
         local TARGET=$3
-        local USER=$1
-        local GROUP=$2
-        chown $USER:$GROUP $TARGET
-    }
-
-    #
-    #
-    fs.group_apache_webroot_own() {
-        chown -R www-data:www-data $SERVER_WEB_ROOT
+        chown $OWNERSHIP $TARGET
     }
 }
