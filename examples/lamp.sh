@@ -11,9 +11,11 @@ module_mysql
 
 lamp.usage() {
     cat <<- EOF
-        multi line text goes here...
-        multi line text goes here...
-        multi line text goes here...
+        commands: install add enable disable
+        install
+        add
+        enable
+        disable
     EOF 
 }
 
@@ -95,7 +97,7 @@ main() {
                     fi
             else
                 echo "File $FILE is not readable."
-                exit
+                exit 0
             fi
     fi
 
@@ -111,6 +113,8 @@ main() {
                 then
 
             fi
+    else
+        lamp.usage
     fi
 
 }
